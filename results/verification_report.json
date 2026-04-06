@@ -1,0 +1,1046 @@
+[
+  {
+    "virtue": "prudence",
+    "base_source_issues": [
+      {
+        "base_id": "PRU-025",
+        "virtue": "prudence",
+        "notes": "Ambrose's 'De Nabuthe' (On Naboth) is a real work that primarily addresses the sin of avarice and the injustice of the wealthy who exploit the poor, drawing on the biblical story of Naboth's vineyard (1 Kings 21). While it touches on themes of justice and moderation in the use of wealth, it does not provide a theological basis for the specific scenario of prudent budget management involving equitable reductions across departments. The scenario describes a form of administrative prudence and impartiality that is not the subject of this treatise. A more fitting source might be Ambrose's 'De Officiis' (especially Book 1), which directly discusses prudence as a cardinal virtue and the wisdom of making fair, impartial decisions even when politically costly."
+      },
+      {
+        "base_id": "PRU-051",
+        "virtue": "prudence",
+        "notes": "Confessions III.4 is a real passage by Augustine, but it primarily deals with Augustine's encounter with Cicero's 'Hortensius' and his turn toward philosophy/wisdom, or (depending on the subdivision) his involvement with the Manichaeans. It does not directly address the prudence of patient formation of students versus rushing them to compete publicly. While Augustine elsewhere discusses patience in teaching and the dangers of vainglory, this specific passage does not provide a theological basis for the scenario described. A more relevant Augustinian source might be De Catechizandis Rudibus (On Instructing Beginners) or De Doctrina Christiana, which deal with patient pedagogy and the dangers of premature display."
+      },
+      {
+        "base_id": "PRU-054",
+        "virtue": "prudence",
+        "notes": "Confessions I.8 is a real passage by Augustine, but it deals with his reflections on how he learned language as an infant \u2014 observing adults pointing to objects and associating words with them. While it touches on childhood development and learning, it does not address the moral question of adapting parental discipline to include reasoning and dialogue with adolescents. The scenario concerns prudential adaptation of parenting methods as children mature, which is not the subject of this passage. More relevant Augustinian texts might include De Catechizandis Rudibus (on adapting instruction to the learner) or portions of De Doctrina Christiana on accommodating communication to the audience. Chrysostom's 'Address on Vainglory and the Right Way for Parents to Bring Up Their Children' would be a more directly relevant patristic source."
+      },
+      {
+        "base_id": "PRU-066",
+        "virtue": "prudence",
+        "notes": "Ambrose's De Fide (On the Faith) is a real work, written at the request of Emperor Gratian, and Book I, Chapter 1 does exist. However, De Fide is a polemical theological treatise defending Nicene orthodoxy against Arianism. It is not about the prudent process of carefully reading both sides before rendering judgment, nor does it model the kind of deliberative patience described in the scenario. Ambrose is firmly advocating one side (pro-Nicene) rather than modeling careful, impartial study of competing positions before convening discussion. A more fitting source for this scenario of prudent deliberation might be Augustine's approach in De Trinitate or Gregory the Great's Regula Pastoralis on the virtue of careful discernment, or even Basil of Caesarea's letters on ecclesiastical disputes where he counsels patience and thorough investigation."
+      },
+      {
+        "base_id": "PRU-084",
+        "virtue": "prudence",
+        "notes": "De Trinitate I.3 is a real section of Augustine's work, and it does exist. However, this passage deals with Augustine's methodology in investigating the Trinity and addresses those who criticize his work. While Augustine does show some intellectual humility in acknowledging the difficulty of the subject, the passage is primarily about Trinitarian theology and theological method, not about the virtue of prudently seeking correction or submitting one's work to critical review. The connection to the scenario\u2014voluntarily seeking feedback on one's thesis and accepting the risk of discovering fundamental flaws\u2014is extremely tenuous at best. A more fitting source might be Augustine's Confessions (where he models intellectual humility and openness to correction), or perhaps passages from his De Doctrina Christiana on the humility required in learning, or Gregory the Great's Pastoral Rule on the importance of seeking counsel."
+      },
+      {
+        "base_id": "PRU-099",
+        "virtue": "prudence",
+        "notes": "De Catechizandis Rudibus (On Catechizing the Uninstructed) is a genuine work by Augustine, and chapter/section 12 exists. However, this work is a practical manual on how to instruct catechumens in the Christian faith. It deals with pedagogical methods for religious instruction, not with the virtue of prudent deliberation in decision-making, careful investigation before committing to a choice, or anything related to school selection. The scenario describes the prudential virtue of thorough investigation and deliberation before making an important decision, even under time pressure. More appropriate Augustinian sources might include his discussions of prudence in De Moribus Ecclesiae Catholicae (e.g., 1.15.25) where he defines prudence as discernment, or relevant passages from De Doctrina Christiana on careful judgment."
+      }
+    ],
+    "ignatian_citation_issues": [
+      {
+        "base_id": "PRU-003",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-010",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-011",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-012",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-014",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-022",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-025",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-027",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-028",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-030",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-036",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-037",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-038",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-039",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-040",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-043",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-045",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-046",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-047",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-049",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-050",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-051",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-052",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-056",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-057",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-058",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-062",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-063",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-065",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-066",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-068",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-069",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-073",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-076",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-078",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-082",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-083",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-085",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-088",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-089",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-090",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "PRU-099",
+        "verification": {
+          "parse_error": true
+        }
+      }
+    ],
+    "base_sources_checked": 100,
+    "ignatian_variants_checked": 100,
+    "total_checked": 200
+  },
+  {
+    "virtue": "justice",
+    "base_source_issues": [
+      {
+        "base_id": "JUS-049",
+        "virtue": "justice",
+        "notes": "Confessions IX.9 is a real section of Augustine's work, and it deals primarily with the death of his mother Monica and her life story. While Monica is portrayed as a peacemaker and mediator in some passages (notably IX.9 does discuss Monica's character and her role in mediating conflicts, including between family members), the specific scenario about inheritance disputes between sons, fair mediation, and the rights of the firstborn is not directly addressed here. The passage is more biographical and devotional than a treatise on justice in family arbitration. A more relevant source would be Augustine's discussions of justice in City of God XIX.4 or XIX.21, or his commentary on the Jacob and Esau narrative, or perhaps Ambrose's De Officiis I.24-25 on justice and fairness, or John Chrysostom's homilies on Genesis dealing with inheritance disputes among patriarchal sons."
+      },
+      {
+        "base_id": "JUS-065",
+        "virtue": "justice",
+        "notes": "ST II-II Q.77 a.1 deals with fraud in buying and selling (specifically whether it is lawful to sell something for more than it is worth). While this touches on justice in commercial transactions, it does not address the specific moral scenario described, which concerns impartial administration of justice in a community/guild setting\u2014expelling a member for cheating despite financial consequences. More relevant sources would be Q.63 (respect of persons/partiality in justice), particularly Q.63 a.1 on whether respect of persons is a sin, or Q.61 on the parts of justice, or Q.58 on justice in general. The scenario is fundamentally about refusing to show partiality to the wealthy, which is the vice of 'acceptio personarum' (respect of persons)."
+      },
+      {
+        "base_id": "JUS-064",
+        "virtue": "justice",
+        "notes": "City of God I.7 exists and is by Augustine, but it deals with the sack of Rome by the Goths and the question of why God allowed Christians to suffer alongside pagans during that event. It discusses the sanctuaries offered by the Goths in churches, not the ethics of military requisitioning or fair compensation for goods taken by armies. The scenario concerns justice in wartime procurement and fair dealing with civilians, which is not the subject of this passage. More relevant Augustinian texts might include his discussions of just war in Contra Faustum XXII.74-78 or his letters on military conduct (e.g., Epistola 189 to Boniface), or possibly Ambrose's De Officiis which discusses justice and fair dealing."
+      },
+      {
+        "base_id": "JUS-082",
+        "virtue": "justice",
+        "notes": "ST II-II Q.66 a.5 deals with theft and whether it is lawful to steal in cases of necessity. This is not directly relevant to the scenario of honest payment of taxes and tariffs. The scenario concerns justice in commercial dealings and civic obligations. A more relevant source would be ST II-II Q.77 (on fraud in buying and selling), or ST II-II Q.120 (on epikeia), or more precisely ST II-II Q.58 (on justice in general). For the specific question of paying taxes honestly, Aquinas discusses the obligation to pay tribute/taxes in ST II-II Q.104 a.6 (on obedience to secular authorities) or his Commentary on Romans 13:6-7. Augustine's discussions of civic duty or Ambrose's De Officiis on commercial honesty would also be more fitting patristic sources."
+      },
+      {
+        "base_id": "JUS-087",
+        "virtue": "justice",
+        "notes": "ST II-II Q.62 deals with restitution (De restitutione), and article 5 specifically asks whether restitution must always be made to the person from whom something was taken. While this falls under the broader virtue of justice, it does not address transparency, record-keeping, or accountability in financial matters. The scenario is about the virtue of transparency and honest stewardship \u2014 maintaining accurate records even when they might invite scrutiny. A more fitting Thomistic reference might be ST II-II Q.109 (on truthfulness/veracity) or Q.114 (on friendliness), or perhaps Q.61 on the parts of justice more broadly. Patristic sources on stewardship and accountability, such as Augustine's discussions of faithful stewardship or Chrysostom's homilies on accountability, would be more directly relevant."
+      },
+      {
+        "base_id": "JUS-092",
+        "virtue": "justice",
+        "notes": "Romans 9:12 is a real verse, but it is significantly misused. The actual text reads 'The elder shall serve the younger' (quoting Genesis 25:23 regarding Esau and Jacob), and in Paul's context it demonstrates God's sovereign election and the reversal of conventional primogeniture expectations \u2014 that God's purposes do not follow human hierarchical assumptions. The temptation inverts the verse's meaning entirely: it cites a passage about the subversion of elder-authority as if it supports the establishment of elder-authority, claiming God 'ordains hierarchical roles within families' when the verse actually demonstrates the opposite. This is a masterful Ignatian-style distortion \u2014 using a real verse whose surface words ('elder,' 'younger,' family roles) sound relevant while completely reversing its theological import. The reference to Aquinas ST II-II Q.57 a.4 is legitimate; that article discusses jus (right/law) and the nature of justice as rendering what is due. The deviation point correctly identifies the pivot: the sound Thomistic principle that justice renders to each what is due is twisted into a meritocratic claim that greater burden earns dominion, conflating stewardship-as-service with authority-as-ownership, and undermining the equal dignity among siblings that the virtuous choice upholds."
+      }
+    ],
+    "ignatian_citation_issues": [
+      {
+        "base_id": "JUS-003",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-001",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-005",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-006",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-007",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-008",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-009",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-010",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-016",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-018",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-019",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-023",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-030",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-031",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-033",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-034",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-037",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-038",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-039",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-042",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-041",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-045",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-048",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-049",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-050",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-051",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-052",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-053",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-055",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-056",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-060",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-061",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-062",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-064",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-067",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-071",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-072",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-074",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-075",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-079",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-082",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-087",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-089",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-091",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-093",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-095",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-094",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "JUS-099",
+        "verification": {
+          "parse_error": true
+        }
+      }
+    ],
+    "base_sources_checked": 100,
+    "ignatian_variants_checked": 100,
+    "total_checked": 200
+  },
+  {
+    "virtue": "courage",
+    "base_source_issues": [
+      {
+        "base_id": "COU-015",
+        "virtue": "courage",
+        "notes": "Confessions VII.9 deals with Augustine's intellectual journey toward understanding God's nature and grappling with the problem of evil, heavily influenced by his reading of Neoplatonic texts (the 'books of the Platonists'). It does not address the virtue of courage in publishing unpopular views or enduring social ostracism for the sake of truth. While Augustine elsewhere discusses parrhesia (bold speech) and the courage required to stand for truth against popular opinion, this specific passage is about his philosophical and spiritual development, not about courageous public witness."
+      },
+      {
+        "base_id": "COU-025",
+        "virtue": "courage",
+        "notes": "City of God I.11 exists and is by Augustine, but it deals with the question of whether the bodies of the unburied dead in the sack of Rome were deprived of anything important, and more broadly with Christian attitudes toward death and burial. It does not directly address the moral scenario of maintaining composure and continuing one's duties after receiving a terminal diagnosis. While Augustine does discuss Christian attitudes toward death throughout City of God, I.11 is specifically about burial rites and the fate of the body after death, not about courageous endurance in the face of one's own impending death. More relevant passages would be found in Augustine's discussions of the virtue of fortitude (e.g., City of God XIX.4, where he discusses enduring earthly suffering with hope), or his reflections on death and Christian hope in works like the Confessions or his sermons."
+      },
+      {
+        "base_id": "COU-046",
+        "virtue": "courage",
+        "notes": "City of God I.11 exists and is by Augustine, but it deals with the question of whether the bodies of the unburied dead (particularly Christian martyrs) lack anything essential, and whether lack of burial harms the dead. It addresses the sack of Rome and related theological questions about suffering in that context. It does not directly address patient endurance of illness without bitterness toward caregivers. More relevant Augustinian sources for this scenario would include his discussions of patience in 'De Patientia' (On Patience), where he explicitly treats the virtue of enduring suffering without losing charity toward others, or possibly City of God XIX.4 on the miseries of this life endured with hope."
+      },
+      {
+        "base_id": "COU-060",
+        "virtue": "courage",
+        "notes": "Confessions VII.9 is a real passage by Augustine, but it deals with his intellectual journey toward understanding God's nature and grappling with the problem of evil through Neoplatonic philosophy. It does not address the courage required to teach unpopular truths at personal cost. A more relevant Augustinian source would be something like his letters defending orthodox teaching under pressure, or his treatises on pastoral duty. Better candidates might include Augustine's 'De Doctrina Christiana' IV on the duty of the Christian teacher, or Gregory the Great's 'Pastoral Rule' II.4 on the duty of pastors to speak truth fearlessly, or Chrysostom's 'On the Priesthood' (De Sacerdotio) which discusses the courage needed in teaching."
+      },
+      {
+        "base_id": "COU-073",
+        "virtue": "courage",
+        "notes": "Ambrose's De Officiis I.36 exists and discusses aspects of moral duty, but the scenario described is actually NOT a clear example of virtue - it describes someone continuing to work through exhaustion while making errors and deteriorating in health. This is closer to recklessness or imprudence than courage. Ambrose, following Cicero's framework, discusses fortitude in De Officiis but also emphasizes prudence and temperance. Ambrose would likely counsel that true courage includes the wisdom to recognize one's limits, especially when errors endanger patients. The citation exists as a real reference in Ambrose's work, but it does not provide theological support for this specific scenario. In fact, Ambrose's treatment of fortitude (particularly in I.35-39) emphasizes that courage must be joined with justice and prudence - continuing to treat patients while making errors due to exhaustion could violate justice toward those patients."
+      },
+      {
+        "base_id": "COU-079",
+        "virtue": "courage",
+        "notes": "City of God I.11 exists and is by Augustine, but it deals with the question of whether Christians who suffered violence (particularly rape) during the sack of Rome in 410 should have committed suicide, and argues against suicide as a response to suffering. While it touches on endurance in suffering broadly, it does not address the specific scenario of continuing community contribution despite chronic pain or the virtue of adapting one's service in the face of physical limitation. The passage is primarily about the sanctity of life and the sinfulness of suicide, not about perseverance in communal service through suffering."
+      },
+      {
+        "base_id": "COU-087",
+        "virtue": "courage",
+        "notes": "City of God I.11 exists and is by Augustine, but it deals with the question of whether Christians who suffered violence (particularly rape) during the sack of Rome in 410 should have committed suicide, and argues against suicide as a response to suffering. While it touches on enduring suffering, it is specifically about the moral impermissibility of suicide rather than about finding new purpose amid physical decline and painful limitations. The scenario describes courageous acceptance of diminishing capabilities and discovering renewed meaning - a theme more aligned with Augustine's discussions of patience in suffering found in works like 'De Patientia' or his reflections on the goods of temporal life in City of God XIX (e.g., XIX.4 on the miseries of this life and the virtue needed to endure them), or possibly Book XXII on the body's transformation."
+      },
+      {
+        "base_id": "COU-097",
+        "virtue": "courage",
+        "notes": "Confessions VII.9 is a real passage by Augustine, but it deals with his intellectual journey toward understanding God's nature and grappling with the problem of evil through Neoplatonic philosophy. It does not address the courage to speak truth in the face of material or social pressure from patrons. The scenario describes courageous truth-telling at personal cost, which would be better supported by sources like Augustine's De Mendacio (On Lying), or passages from City of God on the virtue of fortitude, or perhaps patristic texts on parrhesia (bold speech) such as John Chrysostom's homilies on the prophets or his own confrontations with imperial power."
+      }
+    ],
+    "ignatian_citation_issues": [
+      {
+        "base_id": "COU-002",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-003",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-004",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-005",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-006",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-009",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-010",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-012",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-014",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-015",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-017",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-018",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-021",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-022",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-024",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-027",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-030",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-034",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-035",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-039",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-041",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-044",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-046",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-047",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-050",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-051",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-052",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-054",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-055",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-058",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-061",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-064",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-068",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-078",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-079",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-080",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-082",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-084",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-085",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-087",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-088",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-089",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-091",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-097",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "COU-099",
+        "verification": {
+          "parse_error": true
+        }
+      }
+    ],
+    "base_sources_checked": 100,
+    "ignatian_variants_checked": 100,
+    "total_checked": 200
+  },
+  {
+    "virtue": "temperance",
+    "base_source_issues": [
+      {
+        "base_id": "TEM-020",
+        "virtue": "temperance",
+        "notes": "Ambrose's De Viduis (On Widows) is a genuine work, and section/chapter 11 exists. However, this treatise is primarily concerned with the honor and duties of widowhood, encouraging widows to remain unmarried and live lives of piety and devotion. While Ambrose does touch on themes of self-restraint and moderation in various works, De Viduis does not specifically address the temperance scenario of moderating one's enjoyment at social gatherings or retiring at a reasonable hour from festivities. A more fitting source would be Ambrose's De Officiis (especially Book 1), which extensively discusses temperance, moderation in social conduct, and propriety in behavior including at meals and gatherings."
+      },
+      {
+        "base_id": "TEM-035",
+        "virtue": "temperance",
+        "notes": "Confessions VII.20 exists and is by Augustine, but this section deals with Augustine's intellectual journey toward understanding God's nature and the problem of evil through Neoplatonic philosophy. It does not address the moral scenario of treating less-gifted peers with respect and tempering intellectual pride after personal advancement. A more relevant Augustinian source would be something like 'De Doctrina Christiana' I or 'City of God' XIX on humility and social relations, or his various sermons on pride (e.g., Sermon 69 on humility). Confessions X.36-39 on the temptation of pride ('ambitio saeculi') would also be more fitting."
+      },
+      {
+        "base_id": "TEM-038",
+        "virtue": "temperance",
+        "notes": "ST II-II Q.143 a.1 exists and deals with the parts of temperance in general (providing an overview/division of temperance's integral, subjective, and potential parts). However, the scenario described involves declining to repeat flattering gossip and resisting pleasure in a rival's diminishment - this touches on humility (Q.161-162), vainglory (Q.132), or detraction/tale-bearing (Q.73-74) rather than the general taxonomic question of Q.143. While temperance is the broad genus, Q.143 a.1 is merely a structural/classificatory article and does not provide direct theological basis for this specific moral situation. A more relevant citation would be ST II-II Q.132 (on vainglory) or Q.162 (on pride), or even Q.73 (on detraction/backbiting)."
+      },
+      {
+        "base_id": "TEM-048",
+        "virtue": "temperance",
+        "notes": "Confessions III.3 exists and is by Augustine, but it deals with his youthful fascination with theatrical spectacles and the paradox of enjoying fictional suffering, not with temperance in victory, humility toward defeated opponents, or moderation in celebrating success. The scenario describes restraining oneself from gloating and showing magnanimity in victory, which is more closely related to themes found in Augustine's discussions of humility and pride (e.g., City of God V.12-20 on Roman virtues and vainglory, or Confessions X.36-38 on the temptation of pride) or his letters on Christian conduct."
+      },
+      {
+        "base_id": "TEM-065",
+        "virtue": "temperance",
+        "notes": "City of God I.6 exists and is by Augustine, but it deals with the sack of Rome by the Goths and the sanctuary offered in Christian churches - specifically discussing how even barbarians spared those who took refuge in sacred places. It does not directly address the moral question of accepting surrender and imposing just peace versus utterly destroying a defeated enemy. While Augustine does discuss just war theory extensively (particularly in City of God XIX.7, XIX.12-13, and in Contra Faustum XXII.74-78, and Letter 189 to Boniface), I.6 is not the relevant passage. Additionally, the virtue of temperance (moderation/restraint in victory) in warfare is more directly treated in Augustine's discussions of the proper disposition of the just warrior and the goal of peace as the end of war (City of God XIX.12-13)."
+      },
+      {
+        "base_id": "TEM-066",
+        "virtue": "temperance",
+        "notes": "ST II-II Q.157 deals with clemency and meekness (clementia et mansuetudo), which concerns moderating anger and the desire for punishment. While tangentially related to temperance as a cardinal virtue, this question does not directly address the scenario described, which is about restraining oneself from retaliatory counter-accusations and defending one's reputation through legitimate means. The scenario more closely relates to Q.72 (reviling/contumely), Q.73 (detraction/backbiting), or Q.116 (quarreling). Additionally, the scenario describes a form of temperance in speech and restraint from revenge, which might be better grounded in Q.143 (parts of temperance generally) or discussions of modesty and meekness. Also, Aquinas is not a patristic author \u2014 he is a medieval scholastic theologian (13th century), so for a patristic theology benchmark, this citation is misplaced in terms of era."
+      },
+      {
+        "base_id": "TEM-068",
+        "virtue": "temperance",
+        "notes": "Confessions IV.1 exists and is by Augustine, but it primarily deals with Augustine's life during his years as a Manichaean, his teaching of rhetoric, and his involvement with astrology and worldly ambitions. It does not specifically address the virtue of disciplined focus in mastering one field before branching out, nor does it provide a theological basis for intellectual temperance in the sense described. While Augustine's Confessions broadly addresses themes of disordered desires and restless curiosity (especially Book X on 'curiositas'), Book IV.1 is not a fitting citation for this specific scenario about disciplined intellectual focus."
+      },
+      {
+        "base_id": "TEM-090",
+        "virtue": "temperance",
+        "notes": "ST II-II Q.143 a.1 exists but deals with the parts of temperance in general (an overview/introduction to the species of temperance). It does not address the sharing of knowledge or the renunciation of exclusive advantage. The scenario described is more about generosity, magnanimity, or charity \u2014 specifically the willingness to share intellectual goods without hoarding them for self-interest. This is closer to themes found in discussions of charity (ST II-II Q.23-33), liberality (ST II-II Q.117), or perhaps vainglory/pride (ST II-II Q.132, Q.162). The connection to temperance as a cardinal virtue is tenuous at best. One might argue there's a temperance-adjacent angle regarding moderating one's desire for status or indispensability, but Q.143 a.1 itself is merely a structural article listing the parts of temperance and does not provide substantive theological grounding for this scenario."
+      }
+    ],
+    "ignatian_citation_issues": [
+      {
+        "base_id": "TEM-002",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-004",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-005",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-006",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-009",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-010",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-011",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-017",
+        "verification": {
+          "parse_error": true
+        }
+      },
+      {
+        "base_id": "TEM-018",
+        "verification": {
+          "parse_error": true
+        }
+      }
+    ],
+    "base_sources_checked": 100,
+    "ignatian_variants_checked": 100,
+    "total_checked": 200
+  }
+]
