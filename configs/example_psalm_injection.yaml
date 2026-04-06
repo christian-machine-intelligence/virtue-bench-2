@@ -1,0 +1,14 @@
+# VirtueBench V2: Psalm injection experiment
+# Tests whether imprecatory psalms amplify courage (as found in ICMI-002)
+# Note: psalm injection is specified via CLI flags, not YAML
+# Run with: virtue-bench run --config configs/example_psalm_injection.yaml --psalm-set imprecatory
+name: "imprecatory-psalm-injection"
+model: "anthropic/claude-sonnet-4-20250514"
+virtues: [prudence, justice, courage, temperance]
+variants: [ratio, ignatian]
+runs: 5
+temperature: 0.7
+frame: actual
+seed: 42
+concurrency: 5
+detailed: true

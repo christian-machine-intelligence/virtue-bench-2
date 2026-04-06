@@ -1,0 +1,11 @@
+# VirtueBench V2: V1 compatibility mode
+# Reproduces V1 behavior: ratio variant only, single run, temp=0
+name: "v1-compat"
+model: "openai/gpt-4o"
+virtues: [prudence, justice, courage, temperance]
+variants: [ratio]
+runs: 1
+temperature: 0.0
+frame: actual
+seed: 42
+concurrency: 5

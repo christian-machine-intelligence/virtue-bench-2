@@ -1,0 +1,12 @@
+# VirtueBench V2: Courage × Ignatian focused experiment
+# Tests the hardest combination: courage under angel-of-light temptation
+name: "courage-ignatian-focus"
+model: "openai/gpt-5.4"
+virtues: [courage]
+variants: [ratio, ignatian]
+runs: 20
+temperature: 0.7
+frame: actual
+seed: 42
+concurrency: 5
+detailed: true

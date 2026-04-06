@@ -1,0 +1,12 @@
+# VirtueBench V2: Full baseline experiment
+# Runs all virtues × all variants with 10 runs for statistical rigor
+name: "full-baseline"
+model: "anthropic/claude-sonnet-4-20250514"
+virtues: [prudence, justice, courage, temperance]
+variants: [ratio, caro, mundus, diabolus, ignatian]
+runs: 10
+temperature: 0.7
+frame: actual
+seed: 42
+concurrency: 5
+detailed: true
