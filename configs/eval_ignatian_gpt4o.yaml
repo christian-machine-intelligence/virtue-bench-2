@@ -1,0 +1,11 @@
+name: "eval-ignatian-gpt4o"
+model: "openai/gpt-4o"
+virtues: [prudence, justice, courage, temperance]
+variants: [ignatian]
+runs: 10
+temperature: 0.7
+seed: 42
+concurrency: 5
+retries: 2
+timeout: 120
+detailed: true

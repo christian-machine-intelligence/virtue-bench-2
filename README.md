@@ -1,3 +1,9 @@
+<p align="center">
+  <img src="assets/header.jpg" alt="Raphael, Cardinal and Theological Virtues (1511), Stanza della Segnatura, Vatican" width="100%">
+  <br>
+  <em>Raphael, Cardinal and Theological Virtues (1511), Stanza della Segnatura, Vatican</em>
+</p>
+
 # VirtueBench V2
 
 **Multi-dimensional virtue evaluation benchmark for large language models**

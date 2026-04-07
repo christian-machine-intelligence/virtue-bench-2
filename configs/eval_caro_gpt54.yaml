@@ -1,0 +1,11 @@
+name: "eval-caro-gpt54"
+model: "openai/gpt-5.4"
+virtues: [prudence, justice, courage, temperance]
+variants: [caro]
+runs: 10
+temperature: 0.7
+seed: 42
+concurrency: 5
+retries: 2
+timeout: 120
+detailed: true
