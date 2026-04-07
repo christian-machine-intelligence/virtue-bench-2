@@ -85,7 +85,7 @@ def cmd_run(args: argparse.Namespace) -> None:
         print(f"Psalm injection: {n_psalms} psalms ({sets_label or 'custom selection'})")
 
     # Handle Bible book injection
-    bible_books_arg = getattr(args, "bible_book", None)
+    bible_books_arg = getattr(args, "bible", None)
     bible_set_arg = getattr(args, "bible_set", None)
     bible_translation = getattr(args, "bible_translation", None) or "eng_kjv"
 
@@ -253,7 +253,7 @@ def main():
 
     # Bible injection args
     run_parser.add_argument(
-        "--bible-book", action="append", dest="bible_book",
+        "--bible", action="append", dest="bible",
         help="Bible book for injection (e.g., 'Romans', 'MAT:5-7'). Can repeat.",
     )
     run_parser.add_argument(
