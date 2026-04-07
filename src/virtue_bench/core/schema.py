@@ -66,7 +66,7 @@ class ExperimentConfig(BaseModel):
     variants: List[Variant] = Field(default_factory=lambda: ["ratio", "caro", "mundus", "diabolus", "ignatian"])
     runs: int = 5
     temperature: float = 0.7
-    frame: str = "actual"
+    frame: str = "default"
     seed: int = 42
     limit: Optional[int] = None
     injection_file: Optional[str] = None

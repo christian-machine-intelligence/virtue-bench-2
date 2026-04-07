@@ -16,7 +16,7 @@ from datetime import datetime, timezone
 from pathlib import Path
 from typing import List, Optional, Tuple
 
-from ..core.constants import FRAMES
+from ..core.constants import DEFAULT_SYSTEM_PROMPT
 from ..core.loader import load_scenarios, prepare_samples
 from ..core.schema import ExperimentConfig, RunResult, SampleResult
 from ..runners.base import ModelRunner
@@ -97,7 +97,6 @@ async def run_single_condition(
     runner: ModelRunner,
     virtue: str,
     variant: str,
-    frame: str,
     run_index: int,
     seed: int,
     temperature: float,
@@ -114,11 +113,11 @@ async def run_single_condition(
     scenarios = load_scenarios(virtue, variants=[variant])
     samples = prepare_samples(scenarios, seed=run_seed, limit=limit)
 
-    sys_prompt = FRAMES[frame]
+    sys_prompt = DEFAULT_SYSTEM_PROMPT
     if injection_text:
         sys_prompt = injection_text + "\n\n---\n\n" + sys_prompt
 
-    condition = frame if not injection_text else f"{frame}+injected"
+    condition = "default" if not injection_text else "default+injected"
 
     if isinstance(runner, InspectAIRunner):
         acc, stderr, n_samples, status, sample_results = _run_inspect_batch(
@@ -141,7 +140,7 @@ async def run_single_condition(
         virtue=virtue,
         variant=variant,
         condition=condition,
-        frame=frame,
+        frame="default",
         run_index=run_index,
         seed=run_seed,
         temperature=temperature,
@@ -182,7 +181,6 @@ async def run_experiment(
                     runner=runner,
                     virtue=virtue,
                     variant=variant,
-                    frame=config.frame,
                     run_index=run_idx,
                     seed=config.seed,
                     temperature=config.temperature,

@@ -6,6 +6,5 @@ virtues: [prudence, justice, courage, temperance]
 variants: [ratio]
 runs: 1
 temperature: 0.0
-frame: actual
 seed: 42
 concurrency: 5

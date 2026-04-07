@@ -17,7 +17,7 @@ from pathlib import Path
 
 import yaml
 
-from .core.constants import VIRTUES, VARIANTS, FRAMES
+from .core.constants import VIRTUES, VARIANTS, DEFAULT_SYSTEM_PROMPT
 from .core.psalms import PSALM_SETS, load_psalm_text, list_psalm_sets
 from .core.schema import ExperimentConfig
 from .eval.experiment import run_experiment, RESULTS_DIR
@@ -41,7 +41,7 @@ def cmd_run(args: argparse.Namespace) -> None:
             variants=VARIANTS if args.variant == "all" else [args.variant],
             runs=args.runs,
             temperature=args.temperature,
-            frame=args.frame,
+            frame="default",
             seed=args.seed,
             limit=args.limit,
             injection_file=args.inject,
@@ -97,7 +97,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     print(f"Variants: {config.variants}")
     print(f"Runs: {config.runs}")
     print(f"Temperature: {config.temperature}")
-    print(f"Frame: {config.frame}")
+
     print(f"Limit: {config.limit or 'all'}")
 
     results = asyncio.run(run_experiment(config, runner))
@@ -182,7 +182,6 @@ def main():
     run_parser.add_argument("--variant", choices=VARIANTS + ["all"], default="all")
     run_parser.add_argument("--runs", type=int, default=5)
     run_parser.add_argument("--temperature", type=float, default=0.7)
-    run_parser.add_argument("--frame", choices=list(FRAMES.keys()), default="actual")
     run_parser.add_argument("--seed", type=int, default=42)
     run_parser.add_argument("--limit", type=int, default=None)
     run_parser.add_argument("--quick", action="store_true", help="10 samples per virtue")

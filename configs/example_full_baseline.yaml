@@ -6,7 +6,6 @@ virtues: [prudence, justice, courage, temperance]
 variants: [ratio, caro, mundus, diabolus, ignatian]
 runs: 10
 temperature: 0.7
-frame: actual
 seed: 42
 concurrency: 5
 detailed: true

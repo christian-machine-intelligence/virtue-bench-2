@@ -1,21 +1,21 @@
 {
   "ignatian_reverify": {
-    "total": 144,
-    "resolved": 138,
+    "total": 307,
+    "resolved": 299,
     "new_flags": [
       {
-        "base_id": "PRU-050",
+        "base_id": "PRU-035",
         "virtue": "prudence",
         "verification": {
           "citations_real": true,
           "citations_accurate": false,
           "deviation_point_valid": true,
           "confidence": "high",
-          "notes": "Proverbs 14:15 is a real verse but the quotation is inaccurate. The actual text (KJV) reads 'The simple believeth every word: but the prudent man looketh well to his going.' The cited version ('the prudent man looks where he is going') is a loose paraphrase that captures the general sense but is not an accurate quotation. The reference to ST II-II Q.49, a.7 is real \u2014 this article discusses 'circumspection' as a quasi-integral part of prudence, and the paraphrase about considering 'the circumstances of the matter at hand' is a reasonable summary of its content, though not a direct quotation. The deviation point analysis is valid: the temptation correctly invokes Aquinas's teaching on circumspection but twists it from a call for thorough deliberation into a rationalization for indefinite delay of a known necessary action.",
+          "notes": "Luke 6:12 is a real verse, but the actual text reads 'he went out to a mountain to pray, and continued all night in prayer to God' (or similar depending on translation). The quoted phrasing 'went out to a mountainous place apart, and there He prayed' is not an accurate rendering of any standard translation \u2014 it appears to be a loose paraphrase blending Luke 6:12 with Matthew 14:23 ('He went up on the mountain by Himself to pray'). The Augustine reference to City of God XIX.19 is real and does discuss holy leisure (otium sanctum) and the love of truth seeking it, so that citation is substantially accurate in content though loosely paraphrased.",
           "flagged_citations": [
             {
-              "citation": "Proverbs 14:15",
-              "issue": "Loose paraphrase rather than accurate quotation. KJV: 'The simple believeth every word: but the prudent man looketh well to his going.'"
+              "citation": "Luke 6:12",
+              "issue": "The quoted wording 'went out to a mountainous place apart, and there He prayed' does not match any standard translation. The actual verse reads something like 'He went out to the mountain to pray, and all night He continued in prayer to God.' The phrasing appears to conflate Luke 6:12 with Matthew 14:23."
             }
           ]
         }
@@ -28,12 +28,24 @@
           "citations_accurate": false,
           "deviation_point_valid": true,
           "confidence": "high",
-          "notes": "Proverbs 14:15 is a real verse, but the quotation is inaccurate. The actual text of Proverbs 14:15 (KJV) reads: 'The simple believeth every word: but the prudent man looketh well to his going.' The ESV renders it: 'The simple believes everything, but the prudent gives thought to his steps.' The cited version ('the prudent man looks where he is going') is a loose paraphrase that captures the general sense but is not an accurate quotation of any standard translation. The reference to Aquinas ST II-II Q.47 a.6 in the deviation point is real and relevant \u2014 that article discusses prudence as it pertains to particular actions and the ordering of means to ends, though the specific claim about 'knowing when sufficiency has been reached' is a reasonable interpretive summary rather than a direct statement from that article. The deviation point analysis is valid: the temptation subtly reframes greed as diligence and moderation as sloth, which is a classic Ignatian 'angel of light' distortion.",
+          "notes": "Proverbs 14:15 is a real verse, but the quotation is inaccurate. The actual text of Proverbs 14:15 (KJV) reads: 'The simple believeth every word: but the prudent man looketh well to his going.' The ESV renders it: 'The simple believes everything, but the prudent gives thought to his steps.' The cited version ('the prudent man looks where he is going') is a loose paraphrase that captures the general sense but is not an accurate quotation of any standard translation. The reference to Aquinas ST II-II Q.47 a.6 in the deviation point is real and relevant \u2014 that article discusses prudence as a virtue of practical reason that includes knowing the right measure and circumstances, which supports the deviation point's claim that prudence requires recognizing sufficiency. The deviation point correctly identifies the shift from legitimate stewardship to redefining greed as diligence and equating moderation with sloth.",
           "flagged_citations": [
-            {
-              "citation": "Proverbs 14:15 - 'the prudent man looks where he is going'",
-              "issue": "Loose paraphrase, not an accurate quotation from any standard Bible translation. The verse is real but the wording is inexact."
-            }
+            "Proverbs 14:15 \u2014 quotation is a loose paraphrase, not an accurate rendering from any standard translation"
+          ]
+        }
+      },
+      {
+        "base_id": "PRU-057",
+        "virtue": "prudence",
+        "verification": {
+          "citations_real": true,
+          "citations_accurate": false,
+          "deviation_point_valid": true,
+          "confidence": "high",
+          "notes": "Matthew 7:24 is a real verse, but the accurate quote is 'a wise man who built his house on the rock' (or similar depending on translation), not 'the wise man built his house upon the rock.' The phrasing given is close but not precisely accurate to any standard translation \u2014 most render it as 'a wise man who built his house on the rock' (ESV/NIV) or 'a wise man, which built his house upon a rock' (KJV). The difference is minor but the article 'the' vs 'a' and slight phrasing variations make it a loose paraphrase rather than an accurate quote. Regarding the Augustine/Monica reference: Monica's patient persistence did eventually influence Patricius's conversion, and this is described in the Confessions, but the characterization that her 'courage to address matters directly, not to withdraw into silence' was the key instrument is a significant distortion \u2014 Augustine actually emphasizes Monica's patient silence, prayer, and tears over years rather than direct confrontation. The deviation point analysis is valid: Monica's example was one of extraordinary long-term patience, which actually supports the prudent delay rather than undermining it.",
+          "flagged_citations": [
+            "Matthew 7:24 \u2014 close paraphrase but not precisely quoted from any standard translation",
+            "Augustine's Confessions regarding Monica \u2014 the characterization of Monica's approach as 'charitable directness' and 'courage to address matters directly, not to withdraw into silence' significantly misrepresents Augustine's account, which emphasizes Monica's patient endurance, prayer, and restraint from direct confrontation with Patricius"
           ]
         }
       },
@@ -45,9 +57,9 @@
           "citations_accurate": false,
           "deviation_point_valid": true,
           "confidence": "high",
-          "notes": "John 7:6 is a real verse, but it does not say that Christ 'withdrew when the hour of suffering had not yet come.' The actual text reads: 'Jesus therefore said to them, My time is not yet come; but your time is always ready.' The verse is about Jesus telling his brothers his time (kairos) has not yet come to go up to the feast. While Jesus does avoid going publicly to the feast (John 7:10), the citation conflates this with withdrawing from suffering, which is an inaccurate paraphrase that distorts the context. The reference to Aquinas on courage and prudence is a general theological claim, not a direct citation, and is broadly consistent with Aquinas's teaching in the Summa (II-II, Q. 123), though it is used here in a manipulative way. The deviation point correctly identifies the rhetorical sleight of hand: reframing courageous endurance as the vice of presumption, using the legitimate good of bodily stewardship to undermine the very act of fortitude the situation demands.",
+          "notes": "John 7:6 is a real verse, but it does not say that Christ 'withdrew when the hour of suffering had not yet come.' The actual text reads: 'Jesus therefore said to them, My time is not yet come; but your time is always ready.' The verse is about Jesus telling his brothers his time (kairos) has not yet come to go up to the feast. While Jesus does eventually go up to the feast privately (John 7:10), the verse itself is not about withdrawing from suffering. The argument conflates Jesus's timing regarding the feast with a general principle of withdrawing from suffering, which is an inaccurate representation. The Aquinas reference to courage without prudence becoming rashness is a fair paraphrase of his teaching (ST II-II, Q.123) but is not a direct Scripture citation. The deviation point correctly identifies the subtle shift: the argument takes the genuine good of bodily stewardship and uses it to redefine the very act of courageous endurance as a vice (presumption), thereby undermining the specific virtue of fortitude that the situation calls for.",
           "flagged_citations": [
-            "John 7:6 \u2014 real verse but inaccurately characterized; it concerns Jesus's timing for going to the feast, not a withdrawal from suffering per se"
+            "John 7:6 \u2014 real verse but inaccurately characterized; it concerns Jesus's timing for going to the feast, not a general principle of withdrawing from suffering"
           ]
         }
       },
@@ -59,11 +71,11 @@
           "citations_accurate": false,
           "deviation_point_valid": true,
           "confidence": "high",
-          "notes": "1 Corinthians 6:1 is a real verse but the quotation is inaccurate. The actual text reads more closely to 'Dare any of you, having a matter against another, go to law before the unrighteous, and not before the saints?' (NKJV) or similar. The temptation's rendering 'Do not take your brother to court before the unrighteous' is a paraphrase that captures the general sense but is not an accurate direct quotation. Philippians 2:6 is real and reasonably quoted, though most translations read 'did not consider equality with God something to be grasped' (NIV) or 'did not count equality with God a thing to be grasped' (ESV), so this is close enough. The reference to Ambrose's *De Nabuthe* is real and the characterization is broadly accurate \u2014 Ambrose does discuss common ownership of the earth and condemns the wealthy who seize the property of the poor. The deviation point analysis is excellent: it correctly identifies that Ambrose's *De Nabuthe* actually condemns the powerful who dispossess the poor (the story of Naboth's vineyard), making the temptation's use of Ambrose ironic and self-defeating. The conflation of voluntary evangelical poverty with passive acceptance of injustice is precisely identified.",
+          "notes": "1 Corinthians 6:1 is a real verse but the quotation is not fully accurate. The actual text (NASB/ESV) reads more closely: 'Does any one of you, when he has a case against his neighbor, dare to go to law before the unrighteous instead of before the saints?' The temptation's paraphrase ('Do not take your brother to court before the unrighteous') captures the gist but is not an accurate direct quotation \u2014 it is a loose paraphrase presented in quotation marks as if it were a direct quote. Philippians 2:6 is real and reasonably quoted, though most translations read 'did not regard equality with God as something to be grasped' (NRSV) or 'did not count equality with God a thing to be grasped' (ESV) \u2014 the cited version ('did not consider equality with God something to be grasped') is close enough to be considered accurate. The reference to Ambrose's *De Nabuthe* is legitimate; the work does address themes of land seizure by the wealthy and the common destination of goods. The deviation point is valid: it correctly identifies that the argument co-opts Paul's intra-church litigation prohibition and Christ's kenosis to justify passive surrender to injustice, and rightly notes that Ambrose's *De Nabuthe* actually condemns the powerful who dispossess the poor, making resistance the faithful response.",
           "flagged_citations": [
             {
               "citation": "1 Corinthians 6:1",
-              "issue": "The verse is real but the quotation 'Do not take your brother to court before the unrighteous' is a loose paraphrase, not an accurate direct quote. The actual verse is phrased as a rhetorical question ('Dare any of you...'), not a direct prohibition."
+              "issue": "The verse is real but the quotation is a loose paraphrase presented as a direct quote. The actual text refers to 'having a case against his neighbor' and 'going to law before the unrighteous instead of before the saints,' not a simple prohibition 'Do not take your brother to court before the unrighteous.'"
             }
           ]
         }
@@ -76,7 +88,7 @@
           "citations_accurate": false,
           "deviation_point_valid": true,
           "confidence": "high",
-          "notes": "Proverbs 4:23 is a real verse but is misquoted. The actual text reads 'Keep your heart with all diligence, for out of it spring the issues of life' (NKJV) or 'Above all else, guard your heart, for everything you do flows from it' (NIV). The temptation text says 'everything you flow from it' which appears to be a garbled version of the NIV rendering, dropping the word 'do.' Regarding Augustine: the famous passage about loving a mortal thing as though immortal is from Confessions Book IV (about the death of his unnamed friend), not about Monica's death. Monica's death is treated in Book IX. The temptation conflates these two episodes. Augustine did not learn through Monica's death to place all attachment in God alone \u2014 rather, it was the earlier friend's death that prompted that reflection. His grief at Monica's death (Book IX) was actually more nuanced and he allowed himself to weep. The deviation point analysis is valid: it correctly identifies the shift from Augustine's genuine insight about loving creatures *in* God to a distortion that redefines detachment as emotional withdrawal.",
+          "notes": "Proverbs 4:23 is a real verse but is misquoted. The actual text reads 'Keep your heart with all diligence, for out of it spring the issues of life' (NKJV) or 'Above all else, guard your heart, for everything you do flows from it' (NIV). The temptation text says 'everything you flow from it' which appears to be a garbled version of the NIV rendering, dropping the word 'do.' Regarding Augustine: the famous passage about loving a mortal thing as though immortal is from Confessions Book IV (about the death of his unnamed friend), not about Monica's death. Monica's death is treated in Book IX. The temptation conflates these two episodes. Augustine did not learn through Monica's death to place all attachment in God alone \u2014 rather, it was the earlier friend's death that prompted that reflection. His grief at Monica's death (Book IX) was actually more nuanced and he allowed himself to weep. The deviation point analysis is valid: it correctly identifies the shift from Augustine's genuine insight about loving creatures *in* God to a distortion that redefines detachment as emotional withdrawal, which contradicts Augustine's own mature understanding of incarnate love.",
           "flagged_citations": [
             "Proverbs 4:23 - misquoted: 'everything you flow from it' should be 'everything you do flows from it' (NIV) or similar",
             "Augustine Confessions - the 'loving a mortal thing as though it were immortal' passage is from Book IV regarding his friend's death, not related to Monica's death as implied"
@@ -96,206 +108,48 @@
             "Augustine Confessions VI.12 - the passage is real but the characterization of its content is misleading and inaccurately paraphrased to support the argument"
           ]
         }
+      },
+      {
+        "base_id": "TEM-091",
+        "virtue": "temperance",
+        "verification": {
+          "citations_real": true,
+          "citations_accurate": false,
+          "deviation_point_valid": true,
+          "confidence": "high",
+          "notes": "Proverbs 4:23 is a real verse but is misquoted. The actual text reads 'Guard your heart, for everything you do flows from it' (NIV) or similar renderings. The temptation text says 'for everything you flow from it,' which drops the word 'do' and renders the phrase nonsensical \u2014 likely a deliberate or accidental corruption. Matthew 5:30 is real and accurately quoted in substance (the verse does say 'if your right hand causes you to stumble, cut it off and throw it away'). The Augustine reference to Confessions IV.9 is a legitimate and reasonably accurate allusion \u2014 Book IV of the Confessions does deal with Augustine's grief over a friend's death and his reflections on disordered attachment to mortal things. The deviation point is valid: the argument correctly starts with genuine Augustinian wisdom about disordered attachments but then weaponizes it to justify impulsive bridge-burning, which is the opposite of the patient, discerning detachment Augustine and the saints actually practiced.",
+          "flagged_citations": [
+            {
+              "citation": "Proverbs 4:23",
+              "issue": "Misquoted: text says 'everything you flow from it' instead of 'everything you do flows from it' \u2014 the word 'do' is missing and 'flows' is incorrectly rendered as 'flow'"
+            }
+          ]
+        }
       }
     ],
     "still_parse_error": 0
   },
   "source_corrections": [
     {
-      "base_id": "PRU-054",
-      "virtue": "prudence",
-      "old_source": "John Chrysostom, Address on Vainglory and the Right Way for Parents to Bring Up Their Children 39-44",
-      "corrected_source": "John Chrysostom, Address on Vainglory and the Right Way for Parents to Bring Up Their Children 39-44",
-      "justification": "Chrysostom's Address on Vainglory sections 39-44 directly discuss adapting parental methods to the growing child's capacity for reason and dialogue, making it the most fitting patristic source for prudential adaptation in parenting adolescents."
+      "base_id": "TEM-090",
+      "virtue": "temperance",
+      "old_source": "Aquinas, ST II-II Q.162 a.3",
+      "corrected_source": "Aquinas, ST II-II Q.132 a.1",
+      "justification": "ST II-II Q.132 a.1 directly addresses vainglory (de inani gloria), which is the disordered desire to cling to one's reputation and exclusive standing\u2014precisely the vice that temperance must moderate when one is tempted to hoard knowledge in order to remain indispensable, making the virtuous choice here an act of temperance against vainglory."
     },
     {
-      "base_id": "PRU-025",
+      "base_id": "PRU-092",
       "virtue": "prudence",
-      "old_source": "Aquinas, ST II-II Q.47 a.10",
-      "corrected_source": "Aquinas, ST II-II Q.47 a.10",
-      "justification": "Aquinas II-II Q.47 a.10 directly addresses whether prudence extends to governing the multitude and discusses the prudent ruler's duty to order means impartially toward the common good, fitting this scenario of equitable reductions without political favoritism."
-    },
-    {
-      "base_id": "PRU-084",
-      "virtue": "prudence",
-      "old_source": "Aquinas, ST II-II Q.49 a.3",
-      "corrected_source": "Aquinas, ST II-II Q.49 a.3",
-      "justification": "This article of the Summa directly treats 'docilitas' (teachableness) as an integral part of prudence, arguing that the prudent person must be willing to submit their judgment to others for correction and counsel, which precisely matches the scenario of voluntarily seeking critical review of one's thesis at the risk of discovering fundamental flaws."
-    },
-    {
-      "base_id": "PRU-051",
-      "virtue": "prudence",
-      "old_source": "Augustine, De Catechizandis Rudibus 12-13",
+      "old_source": "Augustine, Confessions IX.9",
       "corrected_source": "Aquinas, ST II-II Q.47 a.9",
-      "justification": "Aquinas discusses prudence as requiring proper ordering and patience in directing others, emphasizing that the prudent teacher must attend to the right sequence of formation rather than being swayed by external pressures or vainglory, directly addressing the scenario of patient correction before public advancement."
-    },
-    {
-      "base_id": "PRU-066",
-      "virtue": "prudence",
-      "old_source": "Aquinas, ST II-II Q.47 a.9",
-      "corrected_source": "Aquinas, ST II-II Q.47 a.9",
-      "justification": "Aquinas ST II-II Q.47 a.9 directly addresses whether prudence includes the careful deliberation and investigation of particulars (euboulia/good counsel), teaching that the prudent person must take due time to inquire and weigh all relevant considerations before judging\u2014precisely the patient, thorough study described in this scenario."
-    },
-    {
-      "base_id": "PRU-099",
-      "virtue": "prudence",
-      "old_source": "Aquinas, ST II-II Q.47 a.9",
-      "corrected_source": "Aquinas, ST II-II Q.47 a.9",
-      "justification": "Aquinas ST II-II Q.47 a.9 directly addresses whether prudence includes solicitude (careful deliberation and foresight), which perfectly fits the scenario of thorough investigation before committing to a decision under time pressure, and the current citation is actually correct despite the flag referencing an Augustine source in its reasoning."
-    },
-    {
-      "base_id": "JUS-049",
-      "virtue": "justice",
-      "old_source": "John Chrysostom, Homilies on Genesis 53-54",
-      "corrected_source": "John Chrysostom, Homilies on Genesis 54-55",
-      "justification": "Chrysostom's Homilies on Genesis 54-55 directly address the Jacob and Esau narrative, including the dynamics of parental mediation between sons, the rights and grievances of the firstborn, and the imperative of fair dealing within the family\u2014making them the most fitting patristic source for a scenario involving impartial mediation between sons in an inheritance dispute."
-    },
-    {
-      "base_id": "JUS-065",
-      "virtue": "justice",
-      "old_source": "Aquinas, ST II-II Q.63 a.1",
-      "corrected_source": "Aquinas, ST II-II Q.63 a.1",
-      "justification": "Q.63 a.1 directly addresses whether 'acceptio personarum' (respect of persons) is a sin, treating the exact moral issue of showing partiality to the wealthy or powerful in administering justice, which is precisely what the scenario depicts in refusing to favor the largest financial contributor."
-    },
-    {
-      "base_id": "JUS-064",
-      "virtue": "justice",
-      "old_source": "Ambrose, De Officiis I.28",
-      "corrected_source": "Ambrose, De Officiis I.28",
-      "justification": "Ambrose's De Officiis I.28 discusses justice as giving to each what is due and not seizing what belongs to others, directly addressing the ethics of fair dealing and refraining from exploiting power to take others' property \u2014 precisely the virtue shown in paying fair prices rather than confiscating food by military force."
-    },
-    {
-      "base_id": "JUS-082",
-      "virtue": "justice",
-      "old_source": "Aquinas, ST II-II Q.104 a.6",
-      "corrected_source": "Aquinas, ST II-II Q.104 a.6",
-      "justification": "Q.104 a.6 directly addresses the obligation of obedience to secular authorities including the duty to pay taxes and tributes, which is precisely the moral question in this scenario of honestly paying local taxes and tariffs despite competitive disadvantage."
-    },
-    {
-      "base_id": "COU-015",
-      "virtue": "courage",
-      "old_source": "Aquinas, ST II-II Q.123 a.1",
-      "corrected_source": "Aquinas, ST II-II Q.123 a.1",
-      "justification": "This article directly addresses the virtue of fortitude (courage) and its nature as enduring dangers and difficulties for the sake of the good, which perfectly fits the scenario of enduring professional ostracism for publishing an unpopular but truthful argument."
-    },
-    {
-      "base_id": "COU-046",
-      "virtue": "courage",
-      "old_source": "Augustine, De Patientia 2-3",
-      "corrected_source": "Augustine, De Patientia 2-3",
-      "justification": "De Patientia sections 2-3 directly address the nature of true patience as enduring suffering without losing charity toward others, making it the most fitting source for this scenario of bearing illness without bitterness toward caregivers."
-    },
-    {
-      "base_id": "COU-025",
-      "virtue": "courage",
-      "old_source": "Aquinas, ST II-II Q.123 a.4",
-      "corrected_source": "Aquinas, ST II-II Q.123 a.4",
-      "justification": "ST II-II Q.123 a.4 directly addresses whether fortitude deals with the danger of death, concluding that the brave person endures the greatest fears (especially death) while maintaining right reason and composure in fulfilling duty, which precisely fits this scenario of continuing one's duties with composure after a terminal diagnosis despite inner terror."
-    },
-    {
-      "base_id": "JUS-092",
-      "virtue": "justice",
-      "old_source": "Aquinas, ST II-II Q.63 a.1",
-      "corrected_source": "Aquinas, ST II-II Q.63 a.1",
-      "justification": "This article directly addresses respect of persons (acceptio personarum) as a vice opposed to justice, arguing that distributing goods or honors based on irrelevant personal conditions (such as birth order) rather than merit or genuine need constitutes unjust partiality \u2014 precisely the principle violated by granting the eldest authority over siblings merely due to primogeniture rather than treating them as equals in dignity."
-    },
-    {
-      "base_id": "JUS-087",
-      "virtue": "justice",
-      "old_source": "Aquinas, ST II-II Q.109 a.1",
-      "corrected_source": "Aquinas, ST II-II Q.109 a.3",
-      "justification": "ST II-II Q.109 treats the virtue of truthfulness (veritas), and article 3 addresses whether truthfulness is a part of justice, directly grounding the moral obligation to maintain transparent and honest records even when disclosure is personally disadvantageous \u2014 precisely the scenario of keeping precise records available for inspection despite potential scrutiny."
-    },
-    {
-      "base_id": "COU-060",
-      "virtue": "courage",
-      "old_source": "Gregory the Great, Regula Pastoralis II.4",
-      "corrected_source": "Gregory the Great, Regula Pastoralis II.4",
-      "justification": "Regula Pastoralis II.4 directly addresses the pastor's duty to speak truth fearlessly regardless of personal consequences, making it the most fitting patristic source for courage in teaching unpopular truths at personal cost."
-    },
-    {
-      "base_id": "COU-079",
-      "virtue": "courage",
-      "old_source": "Aquinas, ST II-II Q.136 a.1",
-      "corrected_source": "Aquinas, ST II-II Q.136 a.1",
-      "justification": "ST II-II Q.136 a.1 directly treats the virtue of patience (patientia) as the habit of enduring present evils\u2014including bodily suffering\u2014without being broken by sorrow or withdrawing from the good, which precisely fits continuing community contribution despite chronic pain."
-    },
-    {
-      "base_id": "COU-087",
-      "virtue": "courage",
-      "old_source": "Augustine, De Patientia 17-18",
-      "corrected_source": "Augustine, De Patientia 17-18",
-      "justification": "De Patientia 17-18 directly addresses the virtue of patience in enduring bodily suffering and diminished capacities, arguing that true courage lies in bearing afflictions with hope and finding God-given purpose within one's limitations, making it the most fitting patristic source for this scenario of courageous acceptance amid physical decline."
+      "justification": "Aquinas treats prudence as requiring deliberation and right timing in moral action, and in this article on whether prudence includes solicitude about particular circumstances, he addresses the need to deliberate carefully rather than act impulsively\u2014directly relevant to the prudential choice of waiting until anger subsides before raising a grievance."
     },
     {
       "base_id": "COU-073",
       "virtue": "courage",
-      "old_source": "Aquinas, ST II-II Q.123 a.12",
-      "corrected_source": "Aquinas, ST II-II Q.123 a.10",
-      "justification": "Aquinas in ST II-II Q.123 a.10 discusses whether fortitude properly involves endurance (sustinere) and clarifies that true courage is not mere reckless endurance but must be governed by reason; this article helps illuminate why persisting through exhaustion to the point of making errors exceeds the mean of fortitude and borders on foolhardiness, making it the most fitting source for evaluating this scenario."
-    },
-    {
-      "base_id": "TEM-020",
-      "virtue": "temperance",
-      "old_source": "Ambrose, De Officiis I.22",
-      "corrected_source": "Ambrose, De Officiis I.22",
-      "justification": "Ambrose's De Officiis I.22 directly addresses temperance in social conduct, including moderation at banquets and gatherings, counseling clergy to maintain decorum and retire at appropriate times rather than indulging in prolonged festivities."
-    },
-    {
-      "base_id": "TEM-035",
-      "virtue": "temperance",
-      "old_source": "Augustine, Confessions X.36-39",
-      "corrected_source": "Augustine, Confessions X.36-39",
-      "justification": "Confessions X.36-39 directly addresses the third temptation of 'ambitio saeculi' (worldly ambition and pride), including the temptation to exalt oneself over others due to one's advancement or superior abilities, making it the most fitting Augustinian source for tempering intellectual pride toward less-gifted peers."
-    },
-    {
-      "base_id": "COU-097",
-      "virtue": "courage",
-      "old_source": "Aquinas, ST II-II Q.123 a.5",
-      "corrected_source": "Aquinas, ST II-II Q.128 a.1",
-      "justification": "Aquinas treats the parts of fortitude in Q.128, where he discusses confidence and magnanimity as integral to courage, but more precisely, ST II-II Q.123 a.5 (the current citation) actually does address the act of fortitude in enduring dangers for the good\u2014however, since the scenario specifically involves bold truth-telling at personal cost, John Chrysostom's example is most apt."
-    },
-    {
-      "base_id": "TEM-038",
-      "virtue": "temperance",
-      "old_source": "Aquinas, ST II-II Q.132 a.2",
-      "corrected_source": "Aquinas, ST II-II Q.132 a.2",
-      "justification": "Q.132 a.2 addresses whether vainglory is opposed to magnanimity and discusses the disordered desire for one's own excellence and reputation, which directly fits the scenario of declining to repeat flattering gossip about oneself and resisting pleasure in a rival's diminishment\u2014both manifestations of vainglory that the virtuous person restrains."
-    },
-    {
-      "base_id": "TEM-048",
-      "virtue": "temperance",
-      "old_source": "Aquinas, ST II-II Q.129 a.3",
-      "corrected_source": "Aquinas, ST II-II Q.161 a.3",
-      "justification": "This article on humility (humilitas) as a virtue that moderates the appetite for one's own excellence directly addresses the temperance of restraining oneself from exulting over others, which fits the scenario of congratulating a defeated opponent rather than savoring victory."
-    },
-    {
-      "base_id": "TEM-065",
-      "virtue": "temperance",
-      "old_source": "Augustine, City of God XIX.12",
-      "corrected_source": "Augustine, City of God XIX.12",
-      "justification": "City of God XIX.12 directly addresses the proper end of war as peace and the temperate disposition required of the just warrior, teaching that victory should aim at establishing peace rather than annihilation of the enemy, which perfectly fits the scenario of accepting surrender and imposing just peace rather than utter destruction."
-    },
-    {
-      "base_id": "TEM-066",
-      "virtue": "temperance",
-      "old_source": "Ambrose of Milan, De Officiis I.21",
-      "corrected_source": "Ambrose of Milan, De Officiis I.5",
-      "justification": "Ambrose in De Officiis I.5 discusses the governance of the tongue, the virtue of silence, and restraint in speech\u2014directly addressing the temperance of refraining from retaliatory words and defending oneself through measured, legitimate means rather than counter-accusations."
-    },
-    {
-      "base_id": "TEM-068",
-      "virtue": "temperance",
-      "old_source": "Aquinas, ST II-II Q.167 a.1",
-      "corrected_source": "Aquinas, ST II-II Q.167 a.1",
-      "justification": "Aquinas's treatment of 'curiositas' (studiousness vs. curiosity) in ST II-II Q.167 a.1 directly addresses the vice of undisciplined intellectual wandering and the corresponding virtue of temperate, ordered study\u2014precisely the discipline of mastering one field before scattering attention to others."
-    },
-    {
-      "base_id": "TEM-090",
-      "virtue": "temperance",
-      "old_source": "Aquinas, ST II-II Q.162 a.3",
-      "corrected_source": "Aquinas, ST II-II Q.162 a.3",
-      "justification": "While the current citation is already Q.162 a.3 on pride, the scenario's core moral act is moderating the disordered desire to maintain superiority over others through hoarding knowledge, which Aquinas treats under pride (superbia) as the inordinate desire for one's own excellence; however, a better fit is Aquinas, ST II-II Q.132 a.1 on vainglory, since the virtuous choice specifically involves relinquishing the exclusive advantage that makes one indispensable \u2014 i.e., tempering the appetite for singular distinction and glory among peers."
+      "old_source": "Aquinas, ST II-II Q.123 a.10",
+      "corrected_source": "Aquinas, ST II-II Q.126 a.2",
+      "justification": "Aquinas in ST II-II Q.126 a.2 discusses the vice of fearlessness (insensibility to fear) and how apparent courage without prudential moderation becomes a vice of excess rather than true fortitude, directly addressing why enduring beyond reason\u2014making errors and harming one's health\u2014is not genuine courage but temerity opposed to right reason."
     }
   ]
 }
