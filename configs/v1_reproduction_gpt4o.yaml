@@ -1,0 +1,13 @@
+# VirtueBench V2: V1 reproduction run — GPT-4o
+# Ratio variant only (V1 scenarios), 10 runs for statistical rigor
+name: "v1-repro-gpt4o"
+model: "openai/gpt-4o"
+virtues: [prudence, justice, courage, temperance]
+variants: [ratio]
+runs: 10
+temperature: 0.7
+seed: 42
+concurrency: 5
+retries: 2
+timeout: 120
+detailed: true

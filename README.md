@@ -98,11 +98,13 @@ virtue-bench-2/
 │   │   ├── constants.py              # VIRTUES, VARIANTS, DEFAULT_SYSTEM_PROMPT
 │   │   ├── loader.py                 # CSV loading, A/B randomization, parse_answer
 │   │   └── psalms.py                 # Psalm injection with 11 named subsets
-│   ├── runners/                      # Model backend protocol
+│   ├── runners/                      # Model backend protocol (5 runners)
 │   │   ├── base.py                   # ModelRunner ABC
-│   │   ├── inspect_ai.py             # Inspect AI (UK AISI) batch runner
-│   │   ├── claude_cli.py             # claude -p pipe mode
-│   │   └── openai_api.py             # pi -p / OpenAI API
+│   │   ├── openai_api.py             # Direct OpenAI SDK
+│   │   ├── anthropic_api.py          # Direct Anthropic SDK
+│   │   ├── claude_cli.py             # claude -p pipe mode (Claude Max)
+│   │   ├── pi_cli.py                 # pi -p pipe mode (ChatGPT Pro)
+│   │   └── inspect_ai.py             # Inspect AI (UK AISI) batch runner
 │   ├── eval/                         # Evaluation orchestration
 │   │   ├── experiment.py             # Multi-run experiment coordinator
 │   │   └── scorer.py                 # Response parsing + scoring
@@ -145,7 +147,7 @@ COU-001,ignatian,"You hold your position...","Scripture teaches...",courage,"Aqu
 
 ## Unified Runner Protocol
 
-V1 had three separate runner files with duplicated logic. V2 defines a `ModelRunner` ABC:
+V1 had three separate runner files with duplicated logic. V2 defines a `ModelRunner` ABC with five interchangeable backends:
 
 ```python
 class ModelRunner(ABC):
@@ -154,12 +156,39 @@ class ModelRunner(ABC):
     def model_id(self) -> str: ...
 ```
 
-Three backends implement this protocol:
-- **InspectAIRunner**: Batch evaluation via the UK AI Safety Institute's [inspect-ai](https://github.com/UKGovernmentBEIS/inspect_ai) framework
-- **ClaudeCLIRunner**: `claude -p` pipe mode for Claude Max subscriptions
-- **OpenAIAPIRunner**: `pi -p` pipe mode for OpenAI/Gemini models
+### API Runners (preferred for evals — requires API key)
 
-Select via `--runner inspect|claude-cli|openai-api`.
+| Runner | Flag | SDK | Use Case |
+|--------|------|-----|----------|
+| **OpenAI API** | `--runner openai-api` | `openai` Python SDK | GPT-4o, GPT-5.4, o-series |
+| **Anthropic API** | `--runner anthropic-api` | `anthropic` Python SDK | Claude Sonnet, Opus, Haiku |
+
+### Subscription Runners (no API key — uses desktop subscription)
+
+| Runner | Flag | Subprocess | Use Case |
+|--------|------|------------|----------|
+| **Claude CLI** | `--runner claude-cli` | `claude -p` pipe mode | Claude Max subscription |
+| **Pi CLI** | `--runner pi-cli` | `pi -p` pipe mode | ChatGPT Pro subscription |
+
+### Framework Runner (optional dependency)
+
+| Runner | Flag | Framework | Use Case |
+|--------|------|-----------|----------|
+| **Inspect AI** | `--runner inspect` | UK AISI [inspect-ai](https://github.com/UKGovernmentBEIS/inspect_ai) | Standardized eval framework |
+
+The runner auto-detects from the model name if `--runner` is not specified: models containing "claude" or "anthropic" use the Anthropic API; others default to OpenAI API.
+
+```bash
+# Explicit runner selection
+virtue-bench run --model gpt-4o --runner openai-api
+virtue-bench run --model claude-sonnet-4-20250514 --runner anthropic-api
+virtue-bench run --model sonnet --runner claude-cli --effort low
+virtue-bench run --model gpt-5.4 --runner pi-cli
+
+# Auto-detect (uses model name to pick runner)
+virtue-bench run --model openai/gpt-4o           # → openai-api
+virtue-bench run --model anthropic/claude-opus-4-6  # → anthropic-api
+```
 
 ## Multi-Run Statistical Evaluation
 

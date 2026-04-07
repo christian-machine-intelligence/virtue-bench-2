@@ -1,26 +1,28 @@
 """
-OpenAI API / pi CLI runner backend.
+OpenAI API runner backend.
 
-Uses `pi -p` pipe mode for OpenAI and Gemini models, or direct API calls.
+Uses the OpenAI Python SDK directly for evaluation.
 """
 
 from __future__ import annotations
 import asyncio
+import os
+from typing import Optional
+
+from openai import AsyncOpenAI
 
 from .base import ModelRunner
 
 
-NEUTRAL_CWD = "/tmp"
-
-
 class OpenAIAPIRunner(ModelRunner):
-    """Runner that uses `pi -p` subprocess for OpenAI/Gemini evaluation."""
+    """Runner that uses the OpenAI API directly."""
 
-    def __init__(self, model: str = "gpt-4o"):
+    def __init__(self, model: str = "gpt-4o", api_key: Optional[str] = None):
         self._model = model
+        self._client = AsyncOpenAI(api_key=api_key or os.environ.get("OPENAI_API_KEY"))
 
     def model_id(self) -> str:
-        return f"pi/{self._model}"
+        return f"openai/{self._model}"
 
     async def query(
         self,
@@ -31,62 +33,50 @@ class OpenAIAPIRunner(ModelRunner):
         retries: int = 2,
         timeout: int = 120,
     ) -> dict:
-        """Send a prompt to pi -p and return outcome."""
+        """Send a prompt to the OpenAI API and return outcome."""
         last_error = "unknown"
 
         for attempt in range(1, retries + 2):
-            proc = None
             try:
-                cmd = [
-                    "pi", "-p",
-                    "--model", self._model,
-                    "--system-prompt", system_prompt,
-                    "--no-session-persistence",
-                ]
-                proc = await asyncio.create_subprocess_exec(
-                    *cmd,
-                    stdin=asyncio.subprocess.PIPE,
-                    stdout=asyncio.subprocess.PIPE,
-                    stderr=asyncio.subprocess.PIPE,
-                    cwd=NEUTRAL_CWD,
-                )
-                stdout, stderr = await asyncio.wait_for(
-                    proc.communicate(prompt.encode()),
+                # Newer OpenAI models use max_completion_tokens instead of max_tokens
+                kwargs = {
+                    "model": self._model,
+                    "messages": [
+                        {"role": "system", "content": system_prompt},
+                        {"role": "user", "content": prompt},
+                    ],
+                    "temperature": temperature,
+                }
+                # Try max_completion_tokens first (GPT-5.x+), fall back to max_tokens
+                if any(x in self._model for x in ["gpt-5", "o1", "o3", "o4"]):
+                    kwargs["max_completion_tokens"] = max_tokens
+                else:
+                    kwargs["max_tokens"] = max_tokens
+
+                response = await asyncio.wait_for(
+                    self._client.chat.completions.create(**kwargs),
                     timeout=timeout,
                 )
+
+                text = response.choices[0].message.content
+                if text is None:
+                    last_error = "null_content"
+                    if attempt <= retries:
+                        continue
+                    break
+
+                return {"response": text.strip(), "infra_error": None}
+
             except asyncio.TimeoutError:
-                if proc is not None:
-                    proc.kill()
-                    try:
-                        await proc.communicate()
-                    except Exception:
-                        pass
                 last_error = "timeout"
                 if attempt <= retries:
                     continue
                 break
-            except FileNotFoundError:
-                last_error = "pi_not_found"
-                break
             except Exception as exc:
-                last_error = f"spawn_error:{exc.__class__.__name__}"
+                last_error = f"api_error:{exc.__class__.__name__}:{str(exc)[:100]}"
                 if attempt <= retries:
+                    await asyncio.sleep(1)
                     continue
                 break
-
-            response = stdout.decode(errors="replace").strip()
-            if proc.returncode != 0:
-                last_error = "nonzero_exit"
-                if attempt <= retries:
-                    continue
-                break
-
-            if not response:
-                last_error = "blank_response"
-                if attempt <= retries:
-                    continue
-                break
-
-            return {"response": response, "infra_error": None}
 
         return {"response": "", "infra_error": last_error}

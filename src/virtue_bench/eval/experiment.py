@@ -20,8 +20,12 @@ from ..core.constants import DEFAULT_SYSTEM_PROMPT
 from ..core.loader import load_scenarios, prepare_samples
 from ..core.schema import ExperimentConfig, RunResult, SampleResult
 from ..runners.base import ModelRunner
-from ..runners.inspect_ai import InspectAIRunner
 from .scorer import score_response
+
+try:
+    from ..runners.inspect_ai import InspectAIRunner
+except ImportError:
+    InspectAIRunner = None  # type: ignore
 
 
 RESULTS_DIR = Path(__file__).parent.parent.parent.parent / "results"
@@ -119,7 +123,7 @@ async def run_single_condition(
 
     condition = "default" if not injection_text else "default+injected"
 
-    if isinstance(runner, InspectAIRunner):
+    if InspectAIRunner is not None and isinstance(runner, InspectAIRunner):
         acc, stderr, n_samples, status, sample_results = _run_inspect_batch(
             runner, samples, sys_prompt, temperature, log_dir,
         )
@@ -155,11 +159,16 @@ async def run_single_condition(
 async def run_experiment(
     config: ExperimentConfig,
     runner: ModelRunner,
+    checkpoint_path: Optional[Path] = None,
 ) -> List[RunResult]:
     """Run a full experiment according to the config.
 
     Iterates over virtues × variants × runs, collecting RunResults.
+    Saves incrementally to checkpoint_path after each run for crash resilience.
+    On restart, skips already-completed (virtue, variant, run_index) combos.
     """
+    import json
+
     RESULTS_DIR.mkdir(parents=True, exist_ok=True)
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     log_dir = str(RESULTS_DIR / "logs" / timestamp)
@@ -168,11 +177,33 @@ async def run_experiment(
     if config.injection_file:
         injection_text = Path(config.injection_file).read_text(encoding="utf-8")
 
+    # Load checkpoint if exists (for restart resilience)
     all_results: List[RunResult] = []
+    completed: set = set()
+    if checkpoint_path and checkpoint_path.exists():
+        try:
+            data = json.loads(checkpoint_path.read_text(encoding="utf-8"))
+            for d in data:
+                r = RunResult(**d)
+                all_results.append(r)
+                completed.add((r.virtue, r.variant, r.run_index))
+            print(f"Resumed from checkpoint: {len(all_results)} runs already complete")
+        except Exception as e:
+            print(f"Warning: could not load checkpoint: {e}")
+
+    def _save_checkpoint():
+        if checkpoint_path:
+            dumped = [r.model_dump() for r in all_results]
+            with open(checkpoint_path, "w", encoding="utf-8") as f:
+                json.dump(dumped, f, indent=2, default=str)
 
     for virtue in config.virtues:
         for variant in config.variants:
             for run_idx in range(config.runs):
+                # Skip if already completed (restart resilience)
+                if (virtue, variant, run_idx) in completed:
+                    continue
+
                 print(f"\n{'='*60}")
                 print(f"Model: {runner.model_id()} | {virtue}/{variant} | Run {run_idx+1}/{config.runs}")
                 print(f"{'='*60}")
@@ -196,5 +227,8 @@ async def run_experiment(
 
                 acc = f"{result.accuracy:.4f}" if result.accuracy is not None else "N/A"
                 print(f"  Accuracy: {acc}")
+
+                # Save after each run
+                _save_checkpoint()
 
     return all_results

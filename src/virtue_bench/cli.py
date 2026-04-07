@@ -21,7 +21,7 @@ from .core.constants import VIRTUES, VARIANTS, DEFAULT_SYSTEM_PROMPT
 from .core.psalms import PSALM_SETS, load_psalm_text, list_psalm_sets
 from .core.schema import ExperimentConfig
 from .eval.experiment import run_experiment, RESULTS_DIR
-from .runners import RUNNERS, ClaudeCLIRunner, OpenAIAPIRunner, InspectAIRunner
+from .runners import RUNNERS, OpenAIAPIRunner, AnthropicAPIRunner, ClaudeCLIRunner, PiCLIRunner
 from .stats.bootstrap import aggregate_runs
 from .analysis.tables import print_comparison_table, print_aggregated_table, print_variant_grid
 from .artifacts.results import write_results, load_results
@@ -84,12 +84,25 @@ def cmd_run(args: argparse.Namespace) -> None:
         print(f"Psalm injection: {n_psalms} psalms ({sets_label or 'custom selection'})")
 
     # Select runner
-    if args.runner == "claude-cli":
-        runner = ClaudeCLIRunner(model=config.model, effort=getattr(args, "effort", "low"))
-    elif args.runner == "openai-api":
-        runner = OpenAIAPIRunner(model=config.model)
+    # Strip provider prefix (e.g. "openai/gpt-4o" -> "gpt-4o") for SDK/CLI runners
+    model_name = config.model.split("/", 1)[-1] if "/" in config.model else config.model
+
+    if args.runner == "openai-api":
+        runner = OpenAIAPIRunner(model=model_name)
+    elif args.runner == "anthropic-api":
+        runner = AnthropicAPIRunner(model=model_name)
+    elif args.runner == "claude-cli":
+        runner = ClaudeCLIRunner(model=model_name, effort=getattr(args, "effort", "low"))
+    elif args.runner == "pi-cli":
+        runner = PiCLIRunner(model=model_name)
+    elif args.runner == "inspect" and "inspect" in RUNNERS:
+        runner = RUNNERS["inspect"](model=config.model)
     else:
-        runner = InspectAIRunner(model=config.model)
+        # Auto-detect from model name
+        if "claude" in config.model.lower() or "anthropic" in config.model.lower():
+            runner = AnthropicAPIRunner(model=model_name)
+        else:
+            runner = OpenAIAPIRunner(model=model_name)
 
     print(f"Model: {runner.model_id()}")
     print(f"Runner: {args.runner}")
@@ -100,14 +113,19 @@ def cmd_run(args: argparse.Namespace) -> None:
 
     print(f"Limit: {config.limit or 'all'}")
 
-    results = asyncio.run(run_experiment(config, runner))
-
-    # Write results
+    # Set up checkpoint path for incremental saves
     timestamp = datetime.now(timezone.utc).strftime("%Y%m%d_%H%M%S")
     filename = args.output or f"results_{timestamp}"
     if not filename.endswith(".json"):
         filename += ".json"
     output_path = RESULTS_DIR / filename
+    checkpoint_path = output_path.with_name(f"{output_path.stem}_checkpoint.json")
+
+    results = asyncio.run(run_experiment(config, runner, checkpoint_path=checkpoint_path))
+
+    # Clean up checkpoint after successful completion
+    if checkpoint_path.exists():
+        checkpoint_path.unlink()
 
     summary_path, logs_path = write_results(results, output_path, write_logs=config.detailed)
     print(f"\nResults saved to: {summary_path}")
