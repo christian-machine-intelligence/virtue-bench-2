@@ -6,4 +6,5 @@ build/
 .env
 .venv/
 results/logs/
+results/*_checkpoint.json
 *.DS_Store

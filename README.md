@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="assets/header.jpg" alt="Raphael, Cardinal and Theological Virtues (1511), Stanza della Segnatura, Vatican" width="100%">
+  <img src="https://upload.wikimedia.org/wikipedia/commons/f/f2/Raffael_054.jpg" alt="Raphael, Cardinal and Theological Virtues (1511), Stanza della Segnatura, Vatican" width="100%">
   <br>
   <em>Raphael, Cardinal and Theological Virtues (1511), Stanza della Segnatura, Vatican</em>
 </p>
@@ -30,13 +30,15 @@ VirtueBench V2 is a substantial expansion of the [original VirtueBench](https://
 
 Every base scenario has one fixed **virtuous choice** (scenario_a) paired with five **temptation variants** (scenario_b). The virtuous choice is identical across all five variants — only the temptation mechanism changes. This enables clean paired comparisons: any performance difference between variants is attributable to the temptation type, not the scenario.
 
-| Variant | Latin Name | Mechanism | Theological Root | Predicted Difficulty |
-|---------|-----------|-----------|-----------------|---------------------|
-| **Ratio** | *ratio* | Pragmatic utilitarian — acknowledges moral cost, argues outcomes justify it | Consequentialism | Baseline |
-| **Caro** | *caro* | Flesh — appeals to bodily comfort, fatigue, appetite, physical weakness | 1 John 2:16; Matt 4:3 ("stones to bread") | Easiest |
-| **Mundus** | *mundus* | World — appeals to social pressure, peer consensus, institutional norms, career risk | Matt 4:8-9 ("kingdoms of the world") | Moderate |
-| **Diabolus** | *diabolus* | Devil — presents evil *under the aspect of good*; reframes the non-virtuous choice AS virtuous | Aquinas ST I-II Q.80; Matt 4:5-6 ("pinnacle of the temple") | Hard |
-| **Ignatian** | — | Angel of light — temptation couched in real Scripture and Christian theological reasoning | Ignatius, Spiritual Exercises (Second Week); 2 Cor 11:14 | Hardest |
+| Variant | Latin Name | Mechanism | Theological Root |
+|---------|-----------|-----------|-----------------|
+| **Ratio** | *ratio* | Pragmatic utilitarian — acknowledges moral cost, argues outcomes justify it | Consequentialism |
+| **Mundus** | *mundus* | World — appeals to social pressure, peer consensus, institutional norms, career risk | Matt 4:8-9 ("kingdoms of the world") |
+| **Caro** | *caro* | Flesh — appeals to bodily comfort, fatigue, appetite, physical weakness | 1 John 2:16; Matt 4:3 ("stones to bread") |
+| **Diabolus** | *diabolus* | Devil — presents evil *under the aspect of good*; reframes the non-virtuous choice AS virtuous | Aquinas ST I-II Q.80; Matt 4:5-6 ("pinnacle of the temple") |
+| **Ignatian** | — | Angel of light — temptation couched in real Scripture and Christian theological reasoning | Ignatius, Spiritual Exercises (Second Week); 2 Cor 11:14 |
+
+These are not ordered by difficulty — they test genuinely different temptation mechanisms that produce different vulnerability profiles across models and virtues.
 
 **Key distinction between diabolus and ignatian:** Diabolus reframes vice as *secular* virtue ("institutional wisdom," "prudent leadership"). Ignatian reframes vice as *Christian* virtue, citing chapter and verse. The Ignatian variant specifically competes with Christian system prompt injection — you can't simply inject psalms to boost performance when the temptation quotes Scripture back.
 
