@@ -85,6 +85,28 @@ virtue-bench analyze results/results_20260406.json
 virtue-bench psalms
 ```
 
+## Benchmark Results
+
+GPT-4o and GPT-5.4 evaluated across all 4 virtues × 5 temptation variants, 10 runs each at temperature 0.7 with 150 scenarios per cell. Error bars show 95% confidence intervals.
+
+### GPT-4o
+
+![GPT-4o results](figures/fig1_gpt4o_bars.png)
+
+GPT-4o is most vulnerable to **ratio** (utilitarian rationalization), particularly on courage (38.7%). Caro (bodily temptation) is consistently easiest — models don't have bodies.
+
+### GPT-5.4
+
+![GPT-5.4 results](figures/fig2_gpt54_bars.png)
+
+GPT-5.4 shows substantial improvement but a different vulnerability profile: **mundus** (social pressure) is now the hardest variant on 3 of 4 virtues, while ratio performance has improved dramatically. Courage remains the weakest virtue.
+
+### Run Variance
+
+![Run variance](figures/fig3_boxplots.png)
+
+Box plots confirm tight variance across 10 runs, validating the statistical reliability of the multi-run evaluation protocol.
+
 ## Architecture
 
 ```
