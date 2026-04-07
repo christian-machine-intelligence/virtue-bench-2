@@ -7,4 +7,5 @@ build/
 .venv/
 results/logs/
 results/*_checkpoint.json
+.bible_cache/
 *.DS_Store

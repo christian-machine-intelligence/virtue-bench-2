@@ -19,6 +19,7 @@ import yaml
 
 from .core.constants import VIRTUES, VARIANTS, DEFAULT_SYSTEM_PROMPT
 from .core.psalms import PSALM_SETS, load_psalm_text, list_psalm_sets
+from .core.bible import BOOK_SETS, TRANSLATIONS, load_bible_text, list_book_sets, list_translations
 from .core.schema import ExperimentConfig
 from .eval.experiment import run_experiment, RESULTS_DIR
 from .runners import RUNNERS, OpenAIAPIRunner, AnthropicAPIRunner, ClaudeCLIRunner, PiCLIRunner
@@ -82,6 +83,27 @@ def cmd_run(args: argparse.Namespace) -> None:
         n_psalms = len(psalm_text.split("Psalm ")) - 1
         sets_label = ",".join(psalm_set_names) if psalm_set_names else ""
         print(f"Psalm injection: {n_psalms} psalms ({sets_label or 'custom selection'})")
+
+    # Handle Bible book injection
+    bible_books_arg = getattr(args, "bible_book", None)
+    bible_set_arg = getattr(args, "bible_set", None)
+    bible_translation = getattr(args, "bible_translation", None) or "eng_kjv"
+
+    if bible_books_arg or bible_set_arg:
+        import tempfile
+        bible_text = load_bible_text(
+            books=bible_books_arg,
+            book_set=bible_set_arg,
+            translation=bible_translation,
+        )
+        tmp = tempfile.NamedTemporaryFile(
+            mode="w", suffix=".txt", delete=False, encoding="utf-8",
+        )
+        tmp.write(bible_text)
+        tmp.close()
+        config.injection_file = tmp.name
+        label = bible_set_arg or ",".join(bible_books_arg)
+        print(f"Bible injection: {label} ({bible_translation})")
 
     # Select runner
     # Strip provider prefix (e.g. "openai/gpt-4o" -> "gpt-4o") for SDK/CLI runners
@@ -229,8 +251,26 @@ def main():
         help="Inject N randomly-selected psalms",
     )
 
+    # Bible injection args
+    run_parser.add_argument(
+        "--bible-book", action="append", dest="bible_book",
+        help="Bible book for injection (e.g., 'Romans', 'MAT:5-7'). Can repeat.",
+    )
+    run_parser.add_argument(
+        "--bible-set", type=str, default=None,
+        choices=list(BOOK_SETS.keys()),
+        help="Named Bible book collection for injection",
+    )
+    run_parser.add_argument(
+        "--bible-translation", type=str, default="eng_kjv",
+        help="Bible translation ID (default: eng_kjv). See 'virtue-bench bible' for options.",
+    )
+
     # --- psalms (list available sets) ---
     psalms_parser = subparsers.add_parser("psalms", help="List available psalm sets")
+
+    # --- bible (list available books/translations) ---
+    bible_parser = subparsers.add_parser("bible", help="List available Bible book sets and translations")
 
     # --- analyze ---
     analyze_parser = subparsers.add_parser("analyze", help="Analyze results")
@@ -260,5 +300,20 @@ def main():
             print(f"  {name:<18} {desc}")
             print(f"  {'':18} Psalms: {','.join(str(p) for p in psalms)}")
             print()
+    elif args.command == "bible":
+        print("\nAvailable Bible book sets:\n")
+        for name, desc in list_book_sets().items():
+            books = BOOK_SETS[name]["books"]
+            print(f"  {name:<24} {desc}")
+            print(f"  {'':24} Books: {', '.join(books)}")
+            print()
+        print("Available translations:\n")
+        for tid, desc in list_translations().items():
+            print(f"  {tid:<12} {desc}")
+        print(f"\nUsage:")
+        print(f"  virtue-bench run --bible-book Romans")
+        print(f"  virtue-bench run --bible-book 'Matthew 5-7' --bible-translation BSB")
+        print(f"  virtue-bench run --bible-set sermon_on_the_mount")
+        print(f"  virtue-bench run --bible-book Romans --bible-book James")
     else:
         parser.print_help()
