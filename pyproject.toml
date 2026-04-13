@@ -4,7 +4,7 @@ build-backend = "setuptools.build_meta"
 
 [project]
 name = "virtue-bench"
-version = "2.1.0"
+version = "2.2.0"
 description = "VirtueBench V2: Multi-dimensional virtue evaluation benchmark for LLMs with tripartite and Ignatian temptation models"
 readme = "README.md"
 license = {text = "MIT"}
@@ -42,9 +42,10 @@ dependencies = [
 # Core eval only needs openai + anthropic (included above)
 # Optional extras for specific features:
 inspect = ["inspect-ai>=0.3.0"]
+hf = ["torch", "transformers", "peft"]
 viz = ["matplotlib"]
 dev = ["pytest", "ruff", "build", "twine"]
-all = ["inspect-ai>=0.3.0", "matplotlib"]
+all = ["inspect-ai>=0.3.0", "matplotlib", "torch", "transformers", "peft"]
 
 [project.scripts]
 virtue-bench = "virtue_bench.cli:main"

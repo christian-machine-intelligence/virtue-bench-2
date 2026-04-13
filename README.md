@@ -20,9 +20,9 @@ VirtueBench V2 is a substantial expansion of the [original VirtueBench](https://
 | **Scenarios per virtue** | 100 | 150 (100 original + 50 new) |
 | **Total scenarios** | 400 | 3,000 (150 base × 5 variants × 4 virtues) |
 | **Statistical rigor** | Single run, temperature=0 | Multi-run with bootstrap CIs, McNemar, chi-squared |
-| **Runner backends** | 3 separate scripts | Unified `ModelRunner` protocol |
+| **Runner backends** | 3 separate scripts | 6 unified `ModelRunner` backends |
 | **Patristic sources** | Aquinas, Augustine, Ambrose | + Gregory the Great, John Chrysostom, Basil the Great |
-| **Scripture injection** | File-based only | 11 psalm subsets + Bible book injection (11 translations) |
+| **Scripture injection** | File-based only | 11 psalm subsets + Bible book injection (bundled KJV) |
 | **Source verification** | None | Automated patristic + Scripture citation verification |
 | **Configuration** | CLI flags only | YAML experiment configs |
 
@@ -84,7 +84,7 @@ virtue-bench analyze results/results_20260406.json
 # Scripture injection
 virtue-bench run --psalm-set imprecatory
 virtue-bench run --bible Romans
-virtue-bench run --bible-set sermon_on_the_mount --bible-translation BSB
+virtue-bench run --bible-set sermon_on_the_mount
 
 # List available scripture options
 virtue-bench psalms
@@ -135,12 +135,13 @@ virtue-bench-2/
 │   │   ├── loader.py                 # CSV loading, A/B randomization, parse_answer
 │   │   ├── psalms.py                 # Psalm injection with 11 named subsets
 │   │   └── bible.py                  # Bible book injection (66 books, bundled KJV)
-│   ├── runners/                      # Model backend protocol (5 runners)
+│   ├── runners/                      # Model backend protocol (6 runners)
 │   │   ├── base.py                   # ModelRunner ABC
 │   │   ├── openai_api.py             # Direct OpenAI SDK
 │   │   ├── anthropic_api.py          # Direct Anthropic SDK
 │   │   ├── claude_cli.py             # claude -p pipe mode (Claude Max)
 │   │   ├── pi_cli.py                 # pi -p pipe mode (ChatGPT Pro)
+│   │   ├── hf_local.py               # Local HuggingFace model (+ LoRA)
 │   │   └── inspect_ai.py             # Inspect AI (UK AISI) batch runner
 │   ├── eval/                         # Evaluation orchestration
 │   │   ├── experiment.py             # Multi-run experiment coordinator
@@ -184,7 +185,7 @@ COU-001,ignatian,"You hold your position...","Scripture teaches...",courage,"Aqu
 
 ## Unified Runner Protocol
 
-V1 had three separate runner files with duplicated logic. V2 defines a `ModelRunner` ABC with five interchangeable backends:
+V1 had three separate runner files with duplicated logic. V2 defines a `ModelRunner` ABC with six interchangeable backends:
 
 ```python
 class ModelRunner(ABC):
@@ -206,6 +207,23 @@ class ModelRunner(ABC):
 |--------|------|------------|----------|
 | **Claude CLI** | `--runner claude-cli` | `claude -p` pipe mode | Claude Max subscription |
 | **Pi CLI** | `--runner pi-cli` | `pi -p` pipe mode | ChatGPT Pro subscription |
+
+### Local Runner (optional dependency)
+
+| Runner | Flag | Backend | Use Case |
+|--------|------|---------|----------|
+| **HF Local** | `--runner hf-local` | `transformers` + `torch` | Local HuggingFace models with optional LoRA adapters |
+
+Install with `pip install virtue-bench[hf]`. Supports any model with a chat template, bfloat16 inference on CUDA, and optional [PEFT](https://github.com/huggingface/peft) LoRA adapter loading.
+
+```bash
+# Local model
+virtue-bench run --model meta-llama/Llama-3.1-8B-Instruct --runner hf-local
+
+# With LoRA adapter
+virtue-bench run --model meta-llama/Llama-3.1-8B-Instruct --runner hf-local \
+    --hf-adapter /path/to/adapter
+```
 
 ### Framework Runner (optional dependency)
 
