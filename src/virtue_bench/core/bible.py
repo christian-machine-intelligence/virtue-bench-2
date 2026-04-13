@@ -1,56 +1,45 @@
 """
 Bible book injection for VirtueBench V2.
 
-Fetches Bible text from the Free Use Bible API (bible.helloao.org)
-for injection into system prompts. Supports multiple translations
-and flexible book/chapter selection.
-
-Translations are cached locally after first fetch to avoid repeated
-API calls.
+Loads KJV Bible text from a bundled local JSON file for injection into
+system prompts. No network calls required.
 
 Usage:
     # CLI
-    virtue-bench run --bible-book Romans --bible-translation eng_kjv
-    virtue-bench run --bible-book "Matthew 5-7"  # Sermon on the Mount
-    virtue-bench run --bible-book Proverbs --bible-translation BSB
-    virtue-bench run --bible-books Romans,James,Proverbs
+    virtue-bench run --bible Romans
+    virtue-bench run --bible "Matthew 5-7"  # Sermon on the Mount
+    virtue-bench run --bible Romans --bible James  # Multiple books
+    virtue-bench run --bible-set sermon_on_the_mount
 
     # Programmatic
     from virtue_bench.core.bible import load_bible_text
-    text = load_bible_text(books=["ROM"], translation="eng_kjv")
-    text = load_bible_text(books=["MAT:5-7"], translation="BSB")
+    text = load_bible_text(books=["ROM"])
+    text = load_bible_text(books=["MAT:5-7"])
 """
 
 from __future__ import annotations
 
 import json
-import os
-import urllib.request
-import urllib.error
 from pathlib import Path
 from typing import Dict, List, Optional, Tuple
 
-# Cache directory for downloaded Bible text
-CACHE_DIR = Path(__file__).parent.parent.parent.parent / ".bible_cache"
+# Bundled KJV data file
+_DATA_FILE = Path(__file__).parent.parent.parent.parent / "data" / "bible_kjv.json"
 
-API_BASE = "https://bible.helloao.org/api"
+# Lazy-loaded Bible data
+_bible_data: Optional[dict] = None
 
-# Supported translations with descriptions
-TRANSLATIONS: Dict[str, str] = {
-    "eng_kjv": "King James (Authorized) Version",
-    "eng_kja": "King James Version + Apocrypha",
-    "BSB": "Berean Standard Bible",
-    "ENGWEBP": "World English Bible",
-    "eng_web": "World English Bible Classic",
-    "eng_webc": "World English Bible (Catholic)",
-    "eng_asv": "American Standard Version (1901)",
-    "eng_dra": "Douay-Rheims 1899",
-    "eng_ylt": "Young's Literal Translation",
-    "eng_lsv": "Literal Standard Version",
-    "eng_msb": "Majority Standard Bible",
-}
 
-# Standard book ID mapping (common names -> API IDs)
+def _load_data() -> dict:
+    """Load and cache the bundled Bible JSON."""
+    global _bible_data
+    if _bible_data is None:
+        with open(_DATA_FILE, encoding="utf-8") as f:
+            _bible_data = json.load(f)
+    return _bible_data
+
+
+# Standard book ID mapping (common names -> 3-letter IDs)
 BOOK_IDS: Dict[str, str] = {
     # Pentateuch
     "genesis": "GEN", "gen": "GEN",
@@ -172,11 +161,10 @@ BOOK_SETS: Dict[str, Dict] = {
 
 
 def resolve_book_id(name: str) -> str:
-    """Resolve a book name or abbreviation to an API book ID."""
+    """Resolve a book name or abbreviation to a 3-letter book ID."""
     clean = name.lower().replace(" ", "").replace(".", "")
     if clean in BOOK_IDS:
         return BOOK_IDS[clean]
-    # Try as-is (might already be an API ID like "GEN")
     if name.upper() in {v for v in BOOK_IDS.values()}:
         return name.upper()
     raise ValueError(
@@ -190,7 +178,6 @@ def parse_book_spec(spec: str) -> Tuple[str, Optional[int], Optional[int]]:
 
     Returns (book_id, start_chapter_or_None, end_chapter_or_None).
     """
-    # Handle "Book:start-end" or "Book start-end"
     parts = spec.replace(":", " ").split()
     book_name = parts[0]
     book_id = resolve_book_id(book_name)
@@ -211,92 +198,15 @@ def parse_book_spec(spec: str) -> Tuple[str, Optional[int], Optional[int]]:
     return book_id, start_ch, end_ch
 
 
-def fetch_chapter(
-    translation: str,
-    book_id: str,
-    chapter: int,
-    cache: bool = True,
-) -> List[str]:
-    """Fetch a single chapter's verse texts from the API.
-
-    Returns list of verse strings. Caches locally after first fetch.
-    """
-    cache_path = CACHE_DIR / translation / book_id / f"{chapter}.json"
-
-    if cache and cache_path.exists():
-        with open(cache_path, encoding="utf-8") as f:
-            return json.load(f)
-
-    url = f"{API_BASE}/{translation}/{book_id}/{chapter}.json"
-    try:
-        req = urllib.request.Request(url)
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except urllib.error.HTTPError as e:
-        raise ValueError(f"API error fetching {url}: {e.code} {e.reason}")
-    except Exception as e:
-        raise ValueError(f"Error fetching {url}: {e}")
-
-    verses = []
-    for item in data.get("chapter", {}).get("content", []):
-        if item.get("type") == "verse":
-            # Content is a list of strings and formatting objects
-            text_parts = [p for p in item.get("content", []) if isinstance(p, str)]
-            verses.append(" ".join(text_parts).strip())
-
-    # Cache
-    if cache:
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump(verses, f)
-
-    return verses
-
-
-def fetch_book_info(translation: str) -> Dict[str, Dict]:
-    """Fetch book metadata (number of chapters, etc.) for a translation."""
-    cache_path = CACHE_DIR / translation / "_books.json"
-
-    if cache_path.exists():
-        with open(cache_path, encoding="utf-8") as f:
-            return json.load(f)
-
-    url = f"{API_BASE}/{translation}/books.json"
-    try:
-        req = urllib.request.Request(url)
-        with urllib.request.urlopen(req, timeout=30) as resp:
-            data = json.loads(resp.read().decode("utf-8"))
-    except Exception as e:
-        raise ValueError(f"Error fetching {url}: {e}")
-
-    books = {}
-    for book in data.get("books", []):
-        books[book["id"]] = {
-            "name": book["name"],
-            "chapters": book["numberOfChapters"],
-            "first_chapter": book.get("firstChapterNumber", 1),
-        }
-
-    if books:
-        cache_path.parent.mkdir(parents=True, exist_ok=True)
-        with open(cache_path, "w", encoding="utf-8") as f:
-            json.dump(books, f)
-
-    return books
-
-
 def load_bible_text(
     books: Optional[List[str]] = None,
     book_set: Optional[str] = None,
-    translation: str = "eng_kjv",
-    cache: bool = True,
 ) -> str:
     """Load Bible text for injection into system prompts.
 
     Args:
         books: List of book specs (e.g., ["ROM", "MAT:5-7", "Proverbs"])
         book_set: Named collection (e.g., "sermon_on_the_mount", "wisdom")
-        translation: Translation ID (default: eng_kjv)
 
     Returns:
         Formatted Bible text ready for system prompt injection.
@@ -317,41 +227,40 @@ def load_bible_text(
     if not specs:
         raise ValueError("No books specified. Use books or book_set parameter.")
 
-    # Fetch book info for chapter counts
-    book_info = fetch_book_info(translation)
+    data = _load_data()
+    books_by_id = {b["id"]: b for b in data["books"]}
 
     parts = []
     for spec in specs:
         book_id, start_ch, end_ch = parse_book_spec(spec)
 
-        if book_id not in book_info:
+        if book_id not in books_by_id:
             raise ValueError(
-                f"Book '{book_id}' not found in translation '{translation}'. "
-                f"Available: {list(book_info.keys())}"
+                f"Book '{book_id}' not found in bundled KJV data. "
+                f"Available: {list(books_by_id.keys())}"
             )
 
-        info = book_info[book_id]
-        book_name = info["name"]
-        total_chapters = info["chapters"]
-        first_ch = info.get("first_chapter", 1)
+        book = books_by_id[book_id]
+        book_name = book["book"]
+        chapters = book["chapters"]
 
         if start_ch is None:
-            start_ch = first_ch
-            end_ch = total_chapters
+            start_ch = chapters[0]["chapter"]
+            end_ch = chapters[-1]["chapter"]
 
-        for ch in range(start_ch, end_ch + 1):
-            verses = fetch_chapter(translation, book_id, ch, cache=cache)
+        for ch_data in chapters:
+            ch_num = ch_data["chapter"]
+            if ch_num < start_ch or ch_num > end_ch:
+                continue
+            verses = ch_data["verses"]
             if verses:
-                header = f"{book_name} {ch}"
-                text = " ".join(f"{i+1}. {v}" for i, v in enumerate(verses))
+                header = f"{book_name} {ch_num}"
+                text = " ".join(
+                    f"{v['verse']}. {v['text']}" for v in verses
+                )
                 parts.append(f"{header}\n{text}")
 
     return "\n\n".join(parts)
-
-
-def list_translations() -> Dict[str, str]:
-    """Return available translations with descriptions."""
-    return dict(TRANSLATIONS)
 
 
 def list_book_sets() -> Dict[str, str]:

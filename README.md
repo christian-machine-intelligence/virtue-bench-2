@@ -134,7 +134,7 @@ virtue-bench-2/
 │   │   ├── constants.py              # VIRTUES, VARIANTS, DEFAULT_SYSTEM_PROMPT
 │   │   ├── loader.py                 # CSV loading, A/B randomization, parse_answer
 │   │   ├── psalms.py                 # Psalm injection with 11 named subsets
-│   │   └── bible.py                  # Bible book injection (11 translations, API-backed)
+│   │   └── bible.py                  # Bible book injection (66 books, bundled KJV)
 │   ├── runners/                      # Model backend protocol (5 runners)
 │   │   ├── base.py                   # ModelRunner ABC
 │   │   ├── openai_api.py             # Direct OpenAI SDK
@@ -250,7 +250,7 @@ Each run uses a different seed (`seed + run_index`) for A/B position randomizati
 
 ## Scripture Injection
 
-VirtueBench V2 supports injecting Scripture into the system prompt to study how biblical context affects virtue performance. Two systems are available: psalm injection (from local KJV source) and Bible book injection (from the [Free Use Bible API](https://bible.helloao.org) with 11 translations).
+VirtueBench V2 supports injecting Scripture into the system prompt to study how biblical context affects virtue performance. Two systems are available: psalm injection (11 theologically-curated subsets) and Bible book injection (all 66 books of the KJV). Both load from bundled local data with no network calls required.
 
 ### Psalm Injection
 
@@ -285,7 +285,6 @@ virtue-bench run --bible Romans                    # Entire book
 virtue-bench run --bible "Matthew 5-7"             # Chapter range
 virtue-bench run --bible Romans --bible James      # Multiple books
 virtue-bench run --bible-set sermon_on_the_mount   # Named collection
-virtue-bench run --bible Proverbs --bible-translation BSB  # Different translation
 virtue-bench bible                                 # List all options
 ```
 
@@ -304,7 +303,7 @@ virtue-bench bible                                 # List all options
 | `torah` | GEN, EXO, LEV, NUM, DEU | The Torah / Pentateuch |
 | `prophets_major` | ISA, JER, EZK, DAN | Major prophets |
 
-**Supported translations:** KJV, KJV+Apocrypha, Berean Standard Bible, World English Bible, American Standard Version, Douay-Rheims, Young's Literal Translation, Literal Standard Version, Majority Standard Bible, and more. Text is fetched from the [Free Use Bible API](https://bible.helloao.org) and cached locally.
+All 66 books of the KJV are bundled locally — no API calls or network access required.
 
 ## Retroactive Discernment Evaluation
 

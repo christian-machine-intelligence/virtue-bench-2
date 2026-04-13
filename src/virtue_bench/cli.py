@@ -19,7 +19,7 @@ import yaml
 
 from .core.constants import VIRTUES, VARIANTS, DEFAULT_SYSTEM_PROMPT
 from .core.psalms import PSALM_SETS, load_psalm_text, list_psalm_sets
-from .core.bible import BOOK_SETS, TRANSLATIONS, load_bible_text, list_book_sets, list_translations
+from .core.bible import BOOK_SETS, load_bible_text, list_book_sets
 from .core.schema import ExperimentConfig
 from .eval.experiment import run_experiment, RESULTS_DIR
 from .runners import RUNNERS, OpenAIAPIRunner, AnthropicAPIRunner, ClaudeCLIRunner, PiCLIRunner
@@ -87,14 +87,12 @@ def cmd_run(args: argparse.Namespace) -> None:
     # Handle Bible book injection
     bible_books_arg = getattr(args, "bible", None)
     bible_set_arg = getattr(args, "bible_set", None)
-    bible_translation = getattr(args, "bible_translation", None) or "eng_kjv"
 
     if bible_books_arg or bible_set_arg:
         import tempfile
         bible_text = load_bible_text(
             books=bible_books_arg,
             book_set=bible_set_arg,
-            translation=bible_translation,
         )
         tmp = tempfile.NamedTemporaryFile(
             mode="w", suffix=".txt", delete=False, encoding="utf-8",
@@ -103,7 +101,7 @@ def cmd_run(args: argparse.Namespace) -> None:
         tmp.close()
         config.injection_file = tmp.name
         label = bible_set_arg or ",".join(bible_books_arg)
-        print(f"Bible injection: {label} ({bible_translation})")
+        print(f"Bible injection: {label} (KJV)")
 
     # Select runner
     # Strip provider prefix (e.g. "openai/gpt-4o" -> "gpt-4o") for SDK/CLI runners
@@ -119,6 +117,12 @@ def cmd_run(args: argparse.Namespace) -> None:
         runner = PiCLIRunner(model=model_name)
     elif args.runner == "inspect" and "inspect" in RUNNERS:
         runner = RUNNERS["inspect"](model=config.model)
+    elif args.runner == "hf-local":
+        from .runners.hf_local import HFLocalRunner
+        runner = HFLocalRunner(
+            model_name=config.model,
+            adapter_path=getattr(args, "hf_adapter", None),
+        )
     else:
         # Auto-detect from model name
         if "claude" in config.model.lower() or "anthropic" in config.model.lower():
@@ -218,6 +222,8 @@ def main():
     run_parser.add_argument("--config", type=str, help="YAML config file")
     run_parser.add_argument("--model", default="anthropic/claude-sonnet-4-20250514")
     run_parser.add_argument("--runner", choices=list(RUNNERS.keys()), default="inspect")
+    run_parser.add_argument("--hf-adapter", type=str, default=None,
+                            help="LoRA adapter path for hf-local runner")
     run_parser.add_argument("--subset", choices=VIRTUES + ["all"], default="all")
     run_parser.add_argument("--variant", choices=VARIANTS + ["all"], default="all")
     run_parser.add_argument("--runs", type=int, default=5)
@@ -261,16 +267,12 @@ def main():
         choices=list(BOOK_SETS.keys()),
         help="Named Bible book collection for injection",
     )
-    run_parser.add_argument(
-        "--bible-translation", type=str, default="eng_kjv",
-        help="Bible translation ID (default: eng_kjv). See 'virtue-bench bible' for options.",
-    )
 
     # --- psalms (list available sets) ---
     psalms_parser = subparsers.add_parser("psalms", help="List available psalm sets")
 
-    # --- bible (list available books/translations) ---
-    bible_parser = subparsers.add_parser("bible", help="List available Bible book sets and translations")
+    # --- bible (list available book sets) ---
+    bible_parser = subparsers.add_parser("bible", help="List available Bible book sets")
 
     # --- analyze ---
     analyze_parser = subparsers.add_parser("analyze", help="Analyze results")
@@ -301,19 +303,16 @@ def main():
             print(f"  {'':18} Psalms: {','.join(str(p) for p in psalms)}")
             print()
     elif args.command == "bible":
-        print("\nAvailable Bible book sets:\n")
+        print("\nAvailable Bible book sets (KJV, all 66 books):\n")
         for name, desc in list_book_sets().items():
             books = BOOK_SETS[name]["books"]
             print(f"  {name:<24} {desc}")
             print(f"  {'':24} Books: {', '.join(books)}")
             print()
-        print("Available translations:\n")
-        for tid, desc in list_translations().items():
-            print(f"  {tid:<12} {desc}")
-        print(f"\nUsage:")
-        print(f"  virtue-bench run --bible-book Romans")
-        print(f"  virtue-bench run --bible-book 'Matthew 5-7' --bible-translation BSB")
-        print(f"  virtue-bench run --bible-set sermon_on_the_mount")
-        print(f"  virtue-bench run --bible-book Romans --bible-book James")
+        print("Usage:")
+        print("  virtue-bench run --bible Romans")
+        print("  virtue-bench run --bible 'Matthew 5-7'")
+        print("  virtue-bench run --bible-set sermon_on_the_mount")
+        print("  virtue-bench run --bible Romans --bible James")
     else:
         parser.print_help()
