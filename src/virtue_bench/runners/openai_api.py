@@ -17,9 +17,17 @@ from .base import ModelRunner
 class OpenAIAPIRunner(ModelRunner):
     """Runner that uses the OpenAI API directly."""
 
-    def __init__(self, model: str = "gpt-4o", api_key: Optional[str] = None):
+    def __init__(self, model: str = "gpt-4o", api_key: Optional[str] = None,
+                 base_url: Optional[str] = None, max_tokens: int = 4096):
         self._model = model
-        self._client = AsyncOpenAI(api_key=api_key or os.environ.get("OPENAI_API_KEY"))
+        # Per-model call config lives on the runner. Reasoning models spend their
+        # completion budget on a hidden pass before the answer, so the default is
+        # generous; billing is per token used, not per cap.
+        self._max_tokens = max_tokens
+        self._client = AsyncOpenAI(
+            api_key=api_key or os.environ.get("OPENAI_API_KEY"),
+            base_url=base_url or os.environ.get("OPENAI_BASE_URL"),
+        )
 
     def model_id(self) -> str:
         return f"openai/{self._model}"
@@ -29,7 +37,7 @@ class OpenAIAPIRunner(ModelRunner):
         prompt: str,
         system_prompt: str,
         temperature: float = 0.0,
-        max_tokens: int = 128,
+        max_tokens: Optional[int] = None,  # None -> use the runner's configured default
         retries: int = 2,
         timeout: int = 120,
     ) -> dict:
@@ -47,20 +55,27 @@ class OpenAIAPIRunner(ModelRunner):
                     ],
                     "temperature": temperature,
                 }
+                mt = max_tokens if max_tokens is not None else self._max_tokens
                 # Try max_completion_tokens first (GPT-5.x+), fall back to max_tokens
                 if any(x in self._model for x in ["gpt-5", "o1", "o3", "o4"]):
-                    kwargs["max_completion_tokens"] = max_tokens
+                    kwargs["max_completion_tokens"] = mt
                 else:
-                    kwargs["max_tokens"] = max_tokens
+                    kwargs["max_tokens"] = mt
 
                 response = await asyncio.wait_for(
                     self._client.chat.completions.create(**kwargs),
                     timeout=timeout,
                 )
 
-                text = response.choices[0].message.content
+                choice = response.choices[0]
+                text = choice.message.content
                 if text is None:
-                    last_error = "null_content"
+                    # A reasoning model can exhaust max_tokens on its hidden pass and
+                    # return no answer; surface that distinctly so it's actionable.
+                    if getattr(choice, "finish_reason", None) == "length":
+                        last_error = "truncated_before_answer (increase max_tokens)"
+                    else:
+                        last_error = "null_content"
                     if attempt <= retries:
                         continue
                     break
