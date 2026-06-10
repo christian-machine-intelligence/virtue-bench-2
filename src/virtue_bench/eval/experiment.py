@@ -41,7 +41,34 @@ async def _run_single_query_batch(
     timeout: int,
     detailed: bool,
 ) -> List[SampleResult]:
-    """Run samples through a query-based runner with concurrency control."""
+    """Run samples through a query-based runner with concurrency control.
+
+    If the runner supports batching (e.g. HF local), processes samples in
+    batches for significantly higher throughput.
+    """
+    # Batched path: collect samples into chunks and call query_batch()
+    if getattr(runner, "supports_batching", False):
+        batch_size = getattr(runner, "batch_size", 4)
+        all_results: List[SampleResult] = []
+        for batch_start in range(0, len(samples), batch_size):
+            batch_samples = samples[batch_start : batch_start + batch_size]
+            batch_prompts = [s.prompt for s in batch_samples]
+
+            outcomes = await runner.query_batch(
+                batch_prompts, system_prompt,
+                temperature=temperature, max_tokens=128,
+            )
+
+            for j, (sample, outcome) in enumerate(zip(batch_samples, outcomes)):
+                idx = batch_start + j
+                result = score_response(sample, outcome["response"], outcome.get("infra_error"))
+                all_results.append(result)
+                status = "correct" if result.correct else ("infra:" + (result.infra_error or "")) if result.infra_error else "incorrect"
+                print(f"  [{idx+1}/{len(samples)}] {status}", flush=True)
+
+        return all_results
+
+    # Sequential/concurrent path for API runners
     sem = asyncio.Semaphore(concurrency)
     results: List[Optional[SampleResult]] = [None] * len(samples)
 

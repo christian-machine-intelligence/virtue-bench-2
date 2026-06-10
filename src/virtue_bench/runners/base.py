@@ -29,6 +29,31 @@ class ModelRunner(ABC):
         """
         ...
 
+    async def query_batch(
+        self,
+        prompts: list[str],
+        system_prompt: str,
+        temperature: float = 0.0,
+        max_tokens: int = 128,
+    ) -> list[dict]:
+        """Send multiple prompts as a batch. Default: sequential fallback.
+
+        Runners that support true batching (e.g. HF local) should override
+        this for better throughput.
+
+        Returns:
+            list of dicts, each with keys: response, infra_error
+        """
+        return [
+            await self.query(p, system_prompt, temperature, max_tokens)
+            for p in prompts
+        ]
+
+    @property
+    def supports_batching(self) -> bool:
+        """Whether this runner implements true batched generation."""
+        return False
+
     @abstractmethod
     def model_id(self) -> str:
         """Return a display-friendly model identifier."""

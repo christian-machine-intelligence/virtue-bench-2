@@ -9,3 +9,7 @@ results/logs/
 results/*_checkpoint.json
 .bible_cache/
 *.DS_Store
+
+# Internal lab notes — never publish
+HANDOFF*.md
+BRIEFING*.md
