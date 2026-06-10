@@ -108,7 +108,7 @@ def cmd_run(args: argparse.Namespace) -> None:
     model_name = config.model.split("/", 1)[-1] if "/" in config.model else config.model
 
     if args.runner == "openai-api":
-        runner = OpenAIAPIRunner(model=model_name)
+        runner = OpenAIAPIRunner(model=model_name, base_url=args.base_url, max_tokens=args.max_tokens)
     elif args.runner == "anthropic-api":
         runner = AnthropicAPIRunner(model=model_name)
     elif args.runner == "claude-cli":
@@ -128,7 +128,7 @@ def cmd_run(args: argparse.Namespace) -> None:
         if "claude" in config.model.lower() or "anthropic" in config.model.lower():
             runner = AnthropicAPIRunner(model=model_name)
         else:
-            runner = OpenAIAPIRunner(model=model_name)
+            runner = OpenAIAPIRunner(model=model_name, base_url=args.base_url, max_tokens=args.max_tokens)
 
     print(f"Model: {runner.model_id()}")
     print(f"Runner: {args.runner}")
@@ -235,6 +235,10 @@ def main():
     run_parser.add_argument("--concurrency", type=int, default=5)
     run_parser.add_argument("--retries", type=int, default=2)
     run_parser.add_argument("--timeout", type=int, default=120)
+    run_parser.add_argument("--max-tokens", type=int, default=4096,
+                            help="Max completion tokens per call (raise for reasoning models)")
+    run_parser.add_argument("--base-url", type=str, default=None,
+                            help="OpenAI-compatible base URL (e.g. http://localhost:8000/v1 or an alt provider)")
     run_parser.add_argument("--detailed", action="store_true")
     run_parser.add_argument("--output", type=str, default=None)
     run_parser.add_argument("--effort", choices=["low", "medium", "high", "max"], default="low")
