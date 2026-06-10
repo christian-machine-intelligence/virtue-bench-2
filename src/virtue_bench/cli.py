@@ -108,7 +108,10 @@ def cmd_run(args: argparse.Namespace) -> None:
     model_name = config.model.split("/", 1)[-1] if "/" in config.model else config.model
 
     if args.runner == "openai-api":
-        runner = OpenAIAPIRunner(model=model_name, base_url=args.base_url, max_tokens=args.max_tokens)
+        thinking_arg = getattr(args, "hf_thinking", None)
+        thinking_mode = None if thinking_arg is None else (thinking_arg == "on")
+        runner = OpenAIAPIRunner(model=model_name, base_url=args.base_url,
+                                 max_tokens=args.max_tokens, thinking_mode=thinking_mode)
     elif args.runner == "anthropic-api":
         runner = AnthropicAPIRunner(model=model_name)
     elif args.runner == "claude-cli":
@@ -119,9 +122,14 @@ def cmd_run(args: argparse.Namespace) -> None:
         runner = RUNNERS["inspect"](model=config.model)
     elif args.runner == "hf-local":
         from .runners.hf_local import HFLocalRunner
+        thinking_arg = getattr(args, "hf_thinking", None)
+        thinking_mode = None if thinking_arg is None else (thinking_arg == "on")
         runner = HFLocalRunner(
             model_name=config.model,
             adapter_path=getattr(args, "hf_adapter", None),
+            quantize=getattr(args, "hf_quantize", None),
+            batch_size=getattr(args, "batch_size", 1),
+            thinking_mode=thinking_mode,
         )
     else:
         # Auto-detect from model name
@@ -224,6 +232,19 @@ def main():
     run_parser.add_argument("--runner", choices=list(RUNNERS.keys()), default="inspect")
     run_parser.add_argument("--hf-adapter", type=str, default=None,
                             help="LoRA adapter path for hf-local runner")
+    run_parser.add_argument("--hf-quantize", type=str, default=None,
+                            choices=["4bit", "8bit", "fp8"],
+                            help="Quantization for hf-local runner: 4bit/8bit use bnb "
+                                 "(runtime quantization on bf16 weights); fp8 is for repos "
+                                 "that ship pre-quantized FP8 weights (transformers auto-"
+                                 "detects from config.json, multi-GPU spread enabled).")
+    run_parser.add_argument("--batch-size", type=int, default=1,
+                            help="Batch size for hf-local runner (default: 1, try 4-8 for GPU)")
+    run_parser.add_argument("--hf-thinking", type=str, default=None,
+                            choices=["on", "off"],
+                            help="Thinking mode for Qwen3.5 and similar models: "
+                                 "'on' sets enable_thinking=True (emits <think>...</think>), "
+                                 "'off' sets enable_thinking=False. Omit for model default.")
     run_parser.add_argument("--subset", choices=VIRTUES + ["all"], default="all")
     run_parser.add_argument("--variant", choices=VARIANTS + ["all"], default="all")
     run_parser.add_argument("--runs", type=int, default=5)

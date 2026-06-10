@@ -17,9 +17,16 @@ from .base import ModelRunner
 class OpenAIAPIRunner(ModelRunner):
     """Runner that uses the OpenAI API directly."""
 
-    def __init__(self, model: str = "gpt-4o", api_key: Optional[str] = None,
-                 base_url: Optional[str] = None, max_tokens: int = 4096):
+    def __init__(
+        self,
+        model: str = "gpt-4o",
+        api_key: Optional[str] = None,
+        base_url: Optional[str] = None,
+        max_tokens: int = 4096,
+        thinking_mode: Optional[bool] = None,
+    ):
         self._model = model
+        self._thinking_mode = thinking_mode
         # Per-model call config lives on the runner. Reasoning models spend their
         # completion budget on a hidden pass before the answer, so the default is
         # generous; billing is per token used, not per cap.
@@ -31,6 +38,14 @@ class OpenAIAPIRunner(ModelRunner):
 
     def model_id(self) -> str:
         return f"openai/{self._model}"
+
+    @staticmethod
+    def _strip_thinking(text: str) -> str:
+        # Qwen thinking blocks are wrapped in <think>...</think>. Strip for
+        # downstream answer extraction; keep the rest of the response intact.
+        if "</think>" in text:
+            return text.split("</think>", 1)[1].lstrip()
+        return text
 
     async def query(
         self,
@@ -62,6 +77,25 @@ class OpenAIAPIRunner(ModelRunner):
                 else:
                     kwargs["max_tokens"] = mt
 
+                # Thinking-mode toggle (for vLLM-hosted Qwen 3.5 etc.).
+                # When thinking is on, bump max_tokens enough that the model has
+                # room to finish its <think>...</think> block AND emit an A/B
+                # answer. 2048 wasn't enough at 27B+ with psalm injection (~50%
+                # of samples ran out before answering). 4096 is comfortable.
+                if self._thinking_mode is not None:
+                    kwargs["extra_body"] = {
+                        "chat_template_kwargs": {
+                            "enable_thinking": self._thinking_mode,
+                        }
+                    }
+                    if self._thinking_mode is True:
+                        if "max_tokens" in kwargs:
+                            kwargs["max_tokens"] = max(kwargs["max_tokens"], 4096)
+                        if "max_completion_tokens" in kwargs:
+                            kwargs["max_completion_tokens"] = max(
+                                kwargs["max_completion_tokens"], 4096
+                            )
+
                 response = await asyncio.wait_for(
                     self._client.chat.completions.create(**kwargs),
                     timeout=timeout,
@@ -80,7 +114,7 @@ class OpenAIAPIRunner(ModelRunner):
                         continue
                     break
 
-                return {"response": text.strip(), "infra_error": None}
+                return {"response": self._strip_thinking(text.strip()), "infra_error": None}
 
             except asyncio.TimeoutError:
                 last_error = "timeout"
